@@ -4,22 +4,22 @@
   --sheet-h: 880px;
 
   --pad-x: 56px;      /* márgenes laterales de la hoja */
-  --gap: 10px;        /* separación entre columnas */
+  --gap: 0px;        /* separación entre columnas */
   --col-pad: 24px;    /* aire interno en cada columna */
 
-  --rail-left: 210px;  /* “raíl” del texto (desde borde izq. de columna) */
+  --rail-left: 225px;  /* “raíl” del texto (desde borde izq. de columna) */
 
-  --thumb-top: 10px;
-  --thumb-w: 76%;     /* ancho relativo del rectángulo */
+  --thumb-top: 30px;
+  --thumb-w: 88%;     /* ancho relativo del rectángulo (más grande) */
 
-  --rotor-bottom: 20px;   /* distancia del bloque de texto al borde inferior */
-  --rotor-width: 340px;   /* ancho lógico del bloque ANTES de rotar */
-  --caption-gap: 60px;    /* separación entre párrafo y título */
+  --rotor-bottom: 10px;   /* distancia del bloque de texto al borde inferior */
+  --rotor-width: 260px;   /* ancho lógico del bloque ANTES de rotar */
+  --caption-gap: 90px;    /* separación entre párrafo y título */
 
-  --year-bottom: 58px;
+  --year-bottom: 42px;
 
   --ink:#111; --muted:#6e6e6e; --rule:#d6d6d6;
-  --fs-body:15px; --fs-title:16px; --fs-year:14px;
+  --fs-body:13px; --fs-title:14px; --fs-year:12px;
 }
 
 *{box-sizing:border-box}
@@ -48,20 +48,49 @@ body{
   position:relative;
   padding:0 var(--col-pad);
   border-left:1px solid var(--rule);
+  overflow: visible;                 /* permite que el .thumb crezca hacia afuera */
 }
 .col:first-child{border-left:0}
-.col:last-child::after{
-  content:""; position:absolute; top:0; bottom:0; right:-1px; width:1px; background:var(--rule);
-}
+/* Eliminamos la línea del borde derecho */
+.col:last-child::after{ content:none; }
 
-/* ====== Rectángulo (4:5 exacto) ====== */
+/* ====== Rectángulo adaptado a la proporción de la imagen ====== */
 .thumb{
   position:absolute;
   top:var(--thumb-top);
   left:50%; transform:translateX(-50%);
   width:var(--thumb-w);
-  aspect-ratio:4/5;
   background:#d9d9d9;
+  overflow: visible;                 /* deja crecer el contenido */
+  transform-origin: center center;
+  transition: transform .4s ease;
+  will-change: transform;
+}
+.thumb img{
+  width:100%;
+  height:auto;                       /* respeta la proporción real de la imagen */
+  max-height: 400px;                 /* límite opcional para no romper la maqueta */
+  display:block;
+  transition: filter .4s ease;
+}
+
+/* Hover: solo sobre la imagen */
+.thumb:hover{
+  transform: translateX(-50%) scale(1.08);
+  z-index: 3;
+  cursor: zoom-in;                   /* cursor de lupa */
+}
+.thumb:hover img{
+  filter: contrast(1.05) saturate(1.05);
+}
+
+/* Accesibilidad con teclado */
+.thumb:focus-within{
+  transform: translateX(-50%) scale(1.08);
+  z-index: 3;
+}
+.thumb:focus-within img{
+  filter: contrast(1.05) saturate(1.05);
 }
 
 /* ====== Bloque rotado único ======
@@ -87,6 +116,7 @@ body{
   color:var(--muted);
   font-size:var(--fs-body);
   margin-bottom:var(--caption-gap); /* separación del título */
+  overflow:hidden;
 }
 .title{
   font-size:var(--fs-title);
@@ -96,7 +126,7 @@ body{
 /* ====== Año pegado al separador ====== */
 .year{
   position:absolute;
-  right:-1px;                /* apoyado sobre la línea derecha */
+  right: 10px;                /* apoyado sobre la línea derecha */
   bottom:var(--year-bottom);
   transform:rotate(-90deg);
   transform-origin:right bottom;
@@ -104,4 +134,10 @@ body{
   color:var(--muted);
   margin:0;
   padding-right:6px;         /* micro-respiro para que no se “coma” la línea */
+}
+
+/* Accesibilidad: reduce animaciones si el usuario lo pide */
+@media (prefers-reduced-motion: reduce){
+  .thumb{ transition: none; }
+  .thumb img{ transition: none; }
 }

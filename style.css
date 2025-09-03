@@ -1,0 +1,107 @@
+/* ====== Variables ====== */
+:root{
+  --sheet-w: 1500px;
+  --sheet-h: 880px;
+
+  --pad-x: 56px;      /* márgenes laterales de la hoja */
+  --gap: 10px;        /* separación entre columnas */
+  --col-pad: 24px;    /* aire interno en cada columna */
+
+  --rail-left: 210px;  /* “raíl” del texto (desde borde izq. de columna) */
+
+  --thumb-top: 10px;
+  --thumb-w: 76%;     /* ancho relativo del rectángulo */
+
+  --rotor-bottom: 20px;   /* distancia del bloque de texto al borde inferior */
+  --rotor-width: 340px;   /* ancho lógico del bloque ANTES de rotar */
+  --caption-gap: 50px;    /* separación entre párrafo y título */
+
+  --year-bottom: 58px;
+
+  --ink:#111; --muted:#6e6e6e; --rule:#d6d6d6;
+  --fs-body:15px; --fs-title:16px; --fs-year:14px;
+}
+
+*{box-sizing:border-box}
+html,body{height:100%}
+body{
+  margin:0; background:#f3f3f3; color:var(--ink);
+  font-family:system-ui,-apple-system,Segoe UI,Roboto,Helvetica,Arial;
+}
+
+/* ====== Hoja ====== */
+.sheet{
+  background:#fff;
+  width:min(var(--sheet-w),96vw);
+  height:min(var(--sheet-h),92vh);
+  margin:2vh auto;
+  display:grid;
+  grid-template-columns:repeat(5,1fr);
+  column-gap:var(--gap);
+  padding:24px var(--pad-x);
+  border-radius:8px;
+  box-shadow:0 10px 28px rgba(0,0,0,.06);
+}
+
+/* ====== Columnas ====== */
+.col{
+  position:relative;
+  padding:0 var(--col-pad);
+  border-left:1px solid var(--rule);
+}
+.col:first-child{border-left:0}
+.col:last-child::after{
+  content:""; position:absolute; top:0; bottom:0; right:-1px; width:1px; background:var(--rule);
+}
+
+/* ====== Rectángulo (4:5 exacto) ====== */
+.thumb{
+  position:absolute;
+  top:var(--thumb-top);
+  left:50%; transform:translateX(-50%);
+  width:var(--thumb-w);
+  aspect-ratio:4/5;
+  background:#d9d9d9;
+}
+
+/* ====== Bloque rotado único ======
+   Así alineamos CAPTION y TITLE en el MISMO eje sin que se crucen */
+.rotor{
+  position:absolute;
+  left:var(--rail-left);
+  bottom:var(--rotor-bottom);
+  width:var(--rotor-width);
+  transform:rotate(-90deg);
+  transform-origin:left bottom;
+}
+
+/* Dentro del rotor el flujo es “normal” horizontal.
+   Al rotarlo, se ve vertical y alineado. */
+.caption, .title{
+  margin:0;
+  line-height:1.35;
+  letter-spacing:.02em;
+  width:100%;
+}
+.caption{
+  color:var(--muted);
+  font-size:var(--fs-body);
+  margin-bottom:var(--caption-gap); /* separación del título */
+}
+.title{
+  font-size:var(--fs-title);
+  font-weight:700;
+}
+
+/* ====== Año pegado al separador ====== */
+.year{
+  position:absolute;
+  right:-1px;                /* apoyado sobre la línea derecha */
+  bottom:var(--year-bottom);
+  transform:rotate(-90deg);
+  transform-origin:right bottom;
+  font-size:var(--fs-year);
+  color:var(--muted);
+  margin:0;
+  padding-right:6px;         /* micro-respiro para que no se “coma” la línea */
+}

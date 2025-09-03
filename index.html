@@ -1,183 +1,78 @@
 <!DOCTYPE html>
 <html lang="es">
 <head>
-<meta charset="utf-8">
-<title>Tipográfica Propagandística – Curaduría Interactiva</title>
-<style>
-  body {
-    font-family: Arial, sans-serif;
-    margin: 0;
-    padding: 0;
-    background: #f9f9f9;
-    color: #333;
-  }
-  header {
-    background: #2e3a4f;
-    color: white;
-    padding: 20px;
-    text-align: center;
-  }
-  h1 {
-    margin: 0;
-    font-size: 1.8rem;
-  }
-  main {
-    max-width: 1000px;
-    margin: 20px auto;
-    padding: 0 15px;
-  }
-  .section {
-    background: #fff;
-    margin-bottom: 15px;
-    border-radius: 8px;
-    box-shadow: 0 2px 4px rgba(0,0,0,0.1);
-    overflow: hidden;
-  }
-  .section h2 {
-    margin: 0;
-    padding: 15px;
-    font-size: 1.2rem;
-    background: #f0f0f0;
-    cursor: pointer;
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-  }
-  .section h2 span {
-    font-size: 0.8rem;
-    color: #777;
-  }
-  .section .content {
-    display: none;
-    padding: 15px;
-  }
-  .section.active .content {
-    display: block;
-  }
-  .section.active h2 {
-    background: #e8e8e8;
-  }
-  ul {
-    margin: 0;
-    padding-left: 20px;
-    list-style-type: disc;
-  }
-</style>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Réplica maqueta</title>
+  <link rel="stylesheet" href="style.css" />
 </head>
 <body>
-  <header>
-    <h1>Tipográfica Propagandística<br><small>Curaduría interactiva</small></h1>
-  </header>
-  <main id="sections">
-    <div class="section" id="economia">
-      <h2>Economía y soberanía<span>nacionalización, recursos, desarrollo</span></h2>
-      <div class="content">
-        <p>Este eje analiza cómo la propaganda tipográfica ha intervenido en debates sobre la propiedad de los recursos naturales y la economía. Desde los carteles por la nacionalización del cobre en 1971 hasta mensajes recientes sobre modelos económicos.</p>
-        <ul>
-          <li>Nacionalización del cobre (1971)</li>
-          <li>Campañas por la reforma agraria</li>
-          <li>Propaganda anti–privatización</li>
-          <li>Carteles contemporáneos sobre pensiones y desigualdad</li>
-        </ul>
+  <main class="sheet">
+    <!-- 5 columnas idénticas -->
+    <section class="col">
+      <div class="thumb"></div>
+
+      <!-- Bloque rotado único: mantiene alineación interna -->
+      <div class="rotor">
+        <p class="caption">
+          Lorem ipsum dolor sit amet consectetuer adipiscing elit, sed diam nonummy nibh euismod
+          tincidunt ut laoreet dolore magna aliquam erat volutpat.
+        </p>
+        <p class="title">
+          <strong>8º Congreso Latinoamericano<br>de Industriales, Viña del Mar</strong>
+        </p>
       </div>
-    </div>
-    <div class="section" id="derechos">
-      <h2>Derechos sociales y educación<span>igualdad, agua, educación</span></h2>
-      <div class="content">
-        <p>Aquí se agrupan afiches y murales que reclaman derechos básicos. Se incluyen campañas por el acceso a la educación, la salud, el agua y la igualdad de género.</p>
-        <ul>
-          <li>Afiche “A conquistar nuestro derecho a la educación… AHORA!!”</li>
-          <li>Panfletos por la educación gratuita</li>
-          <li>Carteles feministas y de derechos humanos</li>
-          <li>Propaganda por el derecho al agua en el plebiscito 2020</li>
-        </ul>
+
+      <p class="year">1972</p>
+    </section>
+
+    <section class="col">
+      <div class="thumb"></div>
+      <div class="rotor">
+        <p class="caption">
+          Lorem ipsum dolor sit amet consectetuer adipiscing elit, sed diam nonummy nibh euismod
+          tincidunt ut laoreet dolore magna aliquam erat volutpat.
+        </p>
+        <p class="title"><strong>8º Congreso Latinoamericano<br>de Industriales, Viña del Mar</strong></p>
       </div>
-    </div>
-    <div class="section" id="trabajo">
-      <h2>Trabajo y participación<span>voluntariado, sindicalismo</span></h2>
-      <div class="content">
-        <p>Este eje aborda la movilización de trabajadores y estudiantes en torno al trabajo voluntario y la organización sindical. Examina cómo la tipografía y el diseño fomentan la participación colectiva.</p>
-        <ul>
-          <li>Afiche “A trabajar! Trabajo voluntario verano ’72”</li>
-          <li>Propaganda sindical de los años 80</li>
-          <li>Campañas modernas por condiciones laborales dignas</li>
-        </ul>
+      <p class="year">1972</p>
+    </section>
+
+    <section class="col">
+      <div class="thumb"></div>
+      <div class="rotor">
+        <p class="caption">
+          Lorem ipsum dolor sit amet consectetuer adipiscing elit, sed diam nonummy nibh euismod
+          tincidunt ut laoreet dolore magna aliquam erat volutpat.
+        </p>
+        <p class="title"><strong>8º Congreso Latinoamericano<br>de Industriales, Viña del Mar</strong></p>
       </div>
-    </div>
-    <div class="section" id="ciencia">
-      <h2>Ciencia y desarrollo<span>congresos, tecnología</span></h2>
-      <div class="content">
-        <p>Explora la propaganda relacionada con la ciencia, la tecnología y el progreso. Destaca carteles de congresos y seminarios que promueven la modernización del país.</p>
-        <ul>
-          <li>1er Congreso Nacional de Científicos (1972)</li>
-          <li>1er Seminario Latinoamericano de Procesamiento Electrónico de Datos</li>
-          <li>Campañas sobre innovación y tecnología contemporáneas</li>
-        </ul>
+      <p class="year">1972</p>
+    </section>
+
+    <section class="col">
+      <div class="thumb"></div>
+      <div class="rotor">
+        <p class="caption">
+          Lorem ipsum dolor sit amet consectetuer adipiscing elit, sed diam nonummy nibh euismod
+          tincidunt ut laoreet dolore magna aliquam erat volutpat.
+        </p>
+        <p class="title"><strong>8º Congreso Latinoamericano<br>de Industriales, Viña del Mar</strong></p>
       </div>
-    </div>
-    <div class="section" id="cultura">
-      <h2>Cultura y festividades<span>festivales, identidad</span></h2>
-      <div class="content">
-        <p>Reúne carteles de festivales de música, teatro y eventos culturales que celebran la identidad popular chilena y latinoamericana.</p>
-        <ul>
-          <li>6º Festival Nacional de Teatro Independiente y Aficionado (1972)</li>
-          <li>1er Festival de la Canción Valdivia</li>
-          <li>Muralismo cultural y fiestas regionales</li>
-        </ul>
+      <p class="year">1972</p>
+    </section>
+
+    <section class="col">
+      <div class="thumb"></div>
+      <div class="rotor">
+        <p class="caption">
+          Lorem ipsum dolor sit amet consectetuer adipiscing elit, sed diam nonummy nibh euismod
+          tincidunt ut laoreet dolore magna aliquam erat volutpat.
+        </p>
+        <p class="title"><strong>8º Congreso Latinoamericano<br>de Industriales, Viña del Mar</strong></p>
       </div>
-    </div>
-    <div class="section" id="revolucion">
-      <h2>Revolución y resistencia<span>brigadas, clandestinidad</span></h2>
-      <div class="content">
-        <p>Este apartado conecta los murales y panfletos de la Brigada Ramona Parra y otros colectivos de resistencia con las protestas contemporáneas, mostrando la continuidad del lenguaje tipográfico rebelde.</p>
-        <ul>
-          <li>Murales de la Brigada Ramona Parra (1968–1973)</li>
-          <li>Panfletos clandestinos contra la dictadura</li>
-          <li>Tipografías del Estallido Social (2019)</li>
-        </ul>
-      </div>
-    </div>
-    <div class="section" id="elecciones">
-      <h2>Elecciones y plebiscitos<span>campañas, plebiscito 1988 y 2020</span></h2>
-      <div class="content">
-        <p>Analiza cómo cambian las tácticas tipográficas durante las campañas electorales y los plebiscitos. Incluye ejemplos de la elección de 1970, el plebiscito de 1988 y el proceso constituyente 2020/2021.</p>
-        <ul>
-          <li>Afiche “Tomic” y campañas presidenciales de 1970</li>
-          <li>Panfletos del “NO” (1988)</li>
-          <li>Carteles de las opciones Apruebo/Rechazo (2020–2021)</li>
-        </ul>
-      </div>
-    </div>
-    <div class="section" id="instituciones">
-      <h2>Narrativas institucionales<span>Estado, partidos, marcas tipográficas</span></h2>
-      <div class="content">
-        <p>Revisa cómo el Estado y los partidos usan tipografías oficiales para construir identidad y confianza, desde las marcas de gobierno (GobCL) hasta la publicidad de campañas institucionales.</p>
-        <ul>
-          <li>Tipografía GobCL y su uso en campañas estatales</li>
-          <li>Logotipos de partidos y coaliciones</li>
-          <li>Publicidad sanitaria y de servicio público</li>
-        </ul>
-      </div>
-    </div>
-    <div class="section" id="artesanal">
-      <h2>Tipografías artesanales y guerrilleras<span>rotulismo, muralismo</span></h2>
-      <div class="content">
-        <p>Describe el oficio de pintar letras y la estética popular que alimenta tanto la publicidad comercial como la propaganda política. Aborda las pintadas de barda, los murales comunitarios y la digitalización reciente de estas formas.</p>
-        <ul>
-          <li>Pintadas de muro de campañas locales (1950–1960)</li>
-          <li>Oficio de los rotulistas (Juan Cadena, Bryan Yonki, etc.)</li>
-          <li>Tipografía popular del Estallido Social (2019)</li>
-        </ul>
-      </div>
-    </div>
+      <p class="year">1972</p>
+    </section>
   </main>
-  <script>
-    // Toggle sections on click
-    document.querySelectorAll('.section h2').forEach(function(h2) {
-      h2.addEventListener('click', function() {
-        this.parentElement.classList.toggle('active');
-      });
-    });
-  </script>
 </body>
 </html>

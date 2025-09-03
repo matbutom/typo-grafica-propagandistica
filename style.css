@@ -14,7 +14,7 @@
 
   --rotor-bottom: 20px;   /* distancia del bloque de texto al borde inferior */
   --rotor-width: 340px;   /* ancho lógico del bloque ANTES de rotar */
-  --caption-gap: 50px;    /* separación entre párrafo y título */
+  --caption-gap: 60px;    /* separación entre párrafo y título */
 
   --year-bottom: 58px;
 

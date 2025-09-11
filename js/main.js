@@ -77,10 +77,10 @@ const basePaths = {
 
 // Unir todo en un único array con rutas completas
 const imagenes = [
-  ...serifImgs.map(f => `${basePaths.serif}/${f}`),
-  ...sansserifImgs.map(f => `${basePaths.sansserif}/${f}`),
-  ...displayImgs.map(f => `${basePaths.display}/${f}`),
-  ...rotulosImgs.map(f => `${basePaths.rotulos}/${f}`)
+  ...serifImgs.map((f) => `${basePaths.serif}/${f}`),
+  ...sansserifImgs.map((f) => `${basePaths.sansserif}/${f}`),
+  ...displayImgs.map((f) => `${basePaths.display}/${f}`),
+  ...rotulosImgs.map((f) => `${basePaths.rotulos}/${f}`),
 ];
 
 // Función para mezclar aleatoriamente
@@ -107,9 +107,10 @@ function renderMuro() {
     columna.classList.add("columna");
 
     // Duplicamos solo ese set para que la animación sea continua
-    const finalSet = [...set, ...set];
+    // Duplicamos varias veces para dar altura infinita
+    const finalSet = Array(10).fill(set).flat(); // 👈 repite 10 veces
 
-    finalSet.forEach(src => {
+    finalSet.forEach((src) => {
       const img = document.createElement("img");
       img.src = src;
       img.classList.add("afiche");

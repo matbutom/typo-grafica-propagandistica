@@ -1,143 +1,39 @@
-/* ====== Variables ====== */
-:root{
-  --sheet-w: 1500px;
-  --sheet-h: 880px;
-
-  --pad-x: 56px;      /* márgenes laterales de la hoja */
-  --gap: 0px;        /* separación entre columnas */
-  --col-pad: 24px;    /* aire interno en cada columna */
-
-  --rail-left: 225px;  /* “raíl” del texto (desde borde izq. de columna) */
-
-  --thumb-top: 30px;
-  --thumb-w: 88%;     /* ancho relativo del rectángulo (más grande) */
-
-  --rotor-bottom: 10px;   /* distancia del bloque de texto al borde inferior */
-  --rotor-width: 260px;   /* ancho lógico del bloque ANTES de rotar */
-  --caption-gap: 90px;    /* separación entre párrafo y título */
-
-  --year-bottom: 42px;
-
-  --ink:#111; --muted:#6e6e6e; --rule:#d6d6d6;
-  --fs-body:13px; --fs-title:14px; --fs-year:12px;
+body {
+  margin: 0;
+  padding: 0;
+  background: #ffffff;
+  overflow: hidden; /* 👈 nada de scroll */
+  width: 1920px;
+  height: 1080px;
 }
 
-*{box-sizing:border-box}
-html,body{height:100%}
-body{
-  margin:0; background:#f3f3f3; color:var(--ink);
-  font-family:system-ui,-apple-system,Segoe UI,Roboto,Helvetica,Arial;
+#muro {
+  display: grid;
+  grid-template-columns: repeat(6, 1fr);
+  gap: 10px;
+  width: 100%;
+  height: 100%;
 }
 
-/* ====== Hoja ====== */
-.sheet{
-  background:#fff;
-  width:min(var(--sheet-w),96vw);
-  height:min(var(--sheet-h),92vh);
-  margin:2vh auto;
-  display:grid;
-  grid-template-columns:repeat(5,1fr);
-  column-gap:var(--gap);
-  padding:24px var(--pad-x);
-  border-radius:8px;
-  box-shadow:0 10px 28px rgba(0,0,0,.06);
+.columna {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  animation: scrollCol 30s linear infinite;
 }
 
-/* ====== Columnas ====== */
-.col{
-  position:relative;
-  padding:0 var(--col-pad);
-  border-left:1px solid var(--rule);
-  overflow: visible;                 /* permite que el .thumb crezca hacia afuera */
-}
-.col:first-child{border-left:0}
-/* Eliminamos la línea del borde derecho */
-.col:last-child::after{ content:none; }
-
-/* ====== Rectángulo adaptado a la proporción de la imagen ====== */
-.thumb{
-  position:absolute;
-  top:var(--thumb-top);
-  left:50%; transform:translateX(-50%);
-  width:var(--thumb-w);
-  background:#d9d9d9;
-  overflow: visible;                 /* deja crecer el contenido */
-  transform-origin: center center;
-  transition: transform .4s ease;
-  will-change: transform;
-}
-.thumb img{
-  width:100%;
-  height:auto;                       /* respeta la proporción real de la imagen */
-  max-height: 400px;                 /* límite opcional para no romper la maqueta */
-  display:block;
-  transition: filter .4s ease;
+.columna:nth-child(even) {
+  animation-direction: reverse; /* 👈 alterna dirección */
 }
 
-/* Hover: solo sobre la imagen */
-.thumb:hover{
-  transform: translateX(-50%) scale(1.08);
-  z-index: 3;
-  cursor: zoom-in;                   /* cursor de lupa */
-}
-.thumb:hover img{
-  filter: contrast(1.05) saturate(1.05);
+.afiche {
+  width: 100%;
+  border-radius: 4px;
+  box-shadow: 0 2px 6px rgba(0,0,0,0.3);
 }
 
-/* Accesibilidad con teclado */
-.thumb:focus-within{
-  transform: translateX(-50%) scale(1.08);
-  z-index: 3;
-}
-.thumb:focus-within img{
-  filter: contrast(1.05) saturate(1.05);
-}
-
-/* ====== Bloque rotado único ======
-   Así alineamos CAPTION y TITLE en el MISMO eje sin que se crucen */
-.rotor{
-  position:absolute;
-  left:var(--rail-left);
-  bottom:var(--rotor-bottom);
-  width:var(--rotor-width);
-  transform:rotate(-90deg);
-  transform-origin:left bottom;
-}
-
-/* Dentro del rotor el flujo es “normal” horizontal.
-   Al rotarlo, se ve vertical y alineado. */
-.caption, .title{
-  margin:0;
-  line-height:1.35;
-  letter-spacing:.02em;
-  width:100%;
-}
-.caption{
-  color:var(--muted);
-  font-size:var(--fs-body);
-  margin-bottom:var(--caption-gap); /* separación del título */
-  overflow:hidden;
-}
-.title{
-  font-size:var(--fs-title);
-  font-weight:700;
-}
-
-/* ====== Año pegado al separador ====== */
-.year{
-  position:absolute;
-  right: 10px;                /* apoyado sobre la línea derecha */
-  bottom:var(--year-bottom);
-  transform:rotate(-90deg);
-  transform-origin:right bottom;
-  font-size:var(--fs-year);
-  color:var(--muted);
-  margin:0;
-  padding-right:6px;         /* micro-respiro para que no se “coma” la línea */
-}
-
-/* Accesibilidad: reduce animaciones si el usuario lo pide */
-@media (prefers-reduced-motion: reduce){
-  .thumb{ transition: none; }
-  .thumb img{ transition: none; }
+/* Animación de columnas arriba/abajo */
+@keyframes scrollCol {
+  0%   { transform: translateY(0); }
+  100% { transform: translateY(-50%); }
 }

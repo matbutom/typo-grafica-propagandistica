@@ -16,7 +16,6 @@ class Tipografia {
     }).join("\n");
   }
 }
-
 // Subclases
 class TipografiaSerif extends Tipografia {
   constructor(archivos) {

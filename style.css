@@ -1,3 +1,26 @@
+/* === Fuente Martian Mono (variable) === */
+.martian-mono {
+  font-family: "Martian Mono", monospace;
+  font-optical-sizing: auto; /* 👈 optimización óptica automática */
+  font-weight: 400;          /* puedes variar entre 100..800 */
+  font-style: normal;
+  font-variation-settings: "wdth" 100; /* ancho estándar */
+}
+
+/* === Fuente global === */
+body, a, li, button, input, textarea {
+  font-family: "Martian Mono", monospace;
+  font-optical-sizing: auto; /* activa el motor variable */
+  font-weight: 100;          /* rango 100..800 */
+  font-style: normal;
+  font-variation-settings: "wdth" 100; /* ancho estándar */
+}
+
+h1, h2, h3 {
+  font-weight: 800; /* títulos más pesados */
+}
+
+/* === Layout base === */
 body {
   margin: 0;
   padding: 0;
@@ -7,12 +30,118 @@ body {
   height: 1080px;
 }
 
+/* === Barra superior con logo === */
+.barra-superior {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100px; /* altura de la barra */
+  background: #fff;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  z-index: 1000;
+
+  /* 👇 efecto de fusión tipo negativo */
+  mix-blend-mode: difference;
+}
+
+.barra-superior .logo {
+  height: 85%; /* ajusta el tamaño del logo */
+  object-fit: contain;
+}
+
+/* === Menú desplegable grande === */
+.menu {
+  position: fixed;
+  top: 100px;               /* justo debajo de la barra */
+  right: 0;
+  background: #ff6f00;      /* 👈 verde fluor sólido */
+  width: 350px;             /* ancho del menú */
+  height: calc(100% - 100px); /* ocupa hasta el final de la pantalla */
+  max-height: 0;            /* cerrado */
+  overflow: hidden;
+  transition: max-height 0.4s ease;
+  z-index: 999;
+  mix-blend-mode: normal;   /* 👈 no se mezcla con el muro */
+}
+
+.menu.open {
+  max-height: calc(100% - 100px); /* se abre hasta abajo */
+}
+
+.menu ul {
+  list-style: none;
+  padding: 40px 30px;
+  margin: 0;
+}
+
+.menu li {
+  margin-bottom: 30px;
+}
+
+.menu li:last-child {
+  margin-bottom: 0;
+}
+
+.menu a {
+  text-decoration: none;
+  color: #ffffff;       /* negro para contraste con fluor */
+  font-size: 1.8rem; /* tipografía más grande */
+  font-weight: 500;  /* links más llamativos */
+  transition: color 0.3s;
+}
+
+.menu a:hover {
+  color: #222;
+  font-style: italic;
+  font-weight: 800;
+  font-size: 2rem;
+}
+
+/* === Botón hamburguesa === */
+.menu-toggle {
+  position: absolute;
+  right: 20px;
+  top: 50%;
+  transform: translateY(-50%);
+  width: 30px;
+  height: 22px;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  cursor: pointer;
+  z-index: 1001;
+}
+
+.menu-toggle span {
+  display: block;
+  height: 4px;
+  background: #000; /* se invierte con blend en la barra */
+  border-radius: 2px;
+  transition: 0.3s;
+}
+
+/* Animación del ícono hamburguesa a "X" */
+.menu-toggle.open span:nth-child(1) {
+  transform: rotate(45deg) translate(5px, 5px);
+}
+.menu-toggle.open span:nth-child(2) {
+  opacity: 0;
+}
+.menu-toggle.open span:nth-child(3) {
+  transform: rotate(-45deg) translate(6px, -6px);
+}
+
+/* === Muro de afiches === */
 #muro {
   display: grid;
   grid-template-columns: repeat(6, 1fr);
   gap: 10px;
   width: 100%;
   height: 100%;
+  margin-top: 100px; /* espacio para la barra */
 }
 
 .columna {

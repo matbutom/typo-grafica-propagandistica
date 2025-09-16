@@ -1,15 +1,49 @@
 <!DOCTYPE html>
 <html lang="es">
-<head>
-  <meta charset="UTF-8" />
-  <title>Muro de Afiches</title>
-  <link rel="stylesheet" href="style.css" />
-</head>
-<body>
-  <div class="muro" id="muro">
-    <!-- Los carteles se inyectan desde JS -->
-  </div>
+  <head>
+    <meta charset="UTF-8" />
+    <title>Muro de Afiches</title>
+    <link rel="stylesheet" href="style.css" />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Martian+Mono:wght@100..800&display=swap"
+      rel="stylesheet"
+    />
+  </head>
+  <body>
+    <!-- Barra superior con logo y hamburguesa -->
+    <div class="barra-superior">
+      <img src="assets/img/TP_logo.png" alt="Logo Proyecto" class="logo" />
+      <div class="menu-toggle" id="menu-toggle">
+        <span></span>
+        <span></span>
+        <span></span>
+      </div>
+    </div>
 
-  <script type="module" src="js/main.js"></script>
-</body>
+    <!-- Menú fuera de la barra -->
+    <nav class="menu" id="menu">
+      <ul>
+        <li><a href="#">Inicio</a></li>
+        <li><a href="#">Proyecto</a></li>
+        <li><a href="#">Galería</a></li>
+        <li><a href="#">Contacto</a></li>
+      </ul>
+    </nav>
+
+    <!-- Muro -->
+    <div id="muro" class="muro"></div>
+
+    <script type="module" src="js/main.js"></script>
+    <script>
+      const toggle = document.getElementById("menu-toggle");
+      const menu = document.getElementById("menu");
+
+      toggle.addEventListener("click", () => {
+        menu.classList.toggle("open");
+        toggle.classList.toggle("open");
+      });
+    </script>
+  </body>
 </html>

@@ -50,37 +50,74 @@ body {
   font-weight: 700;
   font-size: 4rem;
 }
-.carrusel {
+/* ===== Galería ===== */
+.galeria-afiches {
+  position: absolute;
+  top: 50%;
+  right: 3rem;
+  transform: translateY(-50%);
   display: flex;
+  flex-direction: column; /* para apilar imagen y controles */
   align-items: center;
   justify-content: center;
+}
+
+/* ===== Carrusel ===== */
+.carrusel {
+  position: relative; /* importante para posicionar botones sobre la caja */
+  display: flex;
+  flex-direction: column;
+  align-items: center;
   gap: 1rem;
-  margin-top: 2rem;
+  margin-right: 100px;
 }
 
+/* Marco fijo para las imágenes */
+.carrusel .marco {
+  width: 500px; /* ancho fijo */
+  height: 700px; /* alto fijo (ajústalo según te convenga) */
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  overflow: hidden;
+}
+
+/* Imagen dentro del marco */
 .carrusel img {
-  max-width: 400px;
-  height: auto;
-  border: 2px solid #000;
-  box-shadow: 2px 2px 8px rgba(0,0,0,0.2);
+  width: 100%;
+  height: 100%;
+  object-fit: contain; /* encaja sin deformar */
 }
 
+/* Botones fijos a los lados del marco */
 .carrusel-btn {
-  background: none;
+  position: absolute;
+  top: 50%;
+  transform: translateY(-50%);
   border: none;
-  font-size: 2rem;
+  background: rgba(255, 255, 255, 0.8);
+  font-size: 3rem;
   cursor: pointer;
   transition: transform 0.2s ease;
+  padding: 0.5rem 1rem;
 }
 
 .carrusel-btn:hover {
-  transform: scale(1.2);
+  transform: translateY(-50%) scale(1.2);
 }
 
+.carrusel-btn.prev {
+  left: -6rem; /* ajusta la distancia hacia la izquierda */
+}
+
+.carrusel-btn.next {
+  right: -6rem; /* ajusta la distancia hacia la derecha */
+}
+
+/* Contador debajo */
 .contador {
-  text-align: center;
-  margin-top: 0.5rem;
+  margin-top: 0rem;
   font-size: 1rem;
   font-weight: 500;
+  text-align: center;
 }
-

@@ -33,50 +33,50 @@ body {
   padding: 0;
   width: 100%;
   height: 100vh;
-  overflow-y: scroll;   /* 👈 permitimos scroll vertical */
-  overflow-x: hidden;   /* 👈 bloqueamos scroll horizontal */
-  background: #fff;     /* necesario para que el blend funcione bien */
+  overflow-y: scroll; /* 👈 permitimos scroll vertical */
+  overflow-x: hidden; /* 👈 bloqueamos scroll horizontal */
+  background: #fff; /* necesario para que el blend funcione bien */
 }
 
-/* === Barra superior con logo === */
-.barra-superior {
+/* === Logo flotante encima del muro === */
+.logo {
   position: fixed;
-  top: 0;
-  left: 0;
-  width: 100%;
-  height: 100px; /* altura de la barra */
-  background: #fff;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  z-index: 3000;
+  top: 20px;
+  left: 50%;
+  transform: translateX(-50%) scale(1); /* 👈 escala base */
+  height: 80px;
+  z-index: 4000;
+  mix-blend-mode: difference; /* 👈 fundido con los afiches */
+  cursor: pointer;
 
-  /* 👇 efecto de fusión tipo negativo */
-  mix-blend-mode: difference;
+  /* transición suave de todo lo que cambia */
+  transition: transform 0.2s ease, mix-blend-mode 0.2s ease, filter 0.2s ease;
 }
 
-.barra-superior .logo {
-  height: 85%; /* ajusta el tamaño del logo */
-  object-fit: contain;
+.logo:hover {
+  mix-blend-mode: normal; /* 👈 se limpia */
+  transform: translateX(-50%) scale(1.2); /* 👈 crece más suave */
+  filter: drop-shadow(0 8px 20px rgba(0, 0, 0, 1));
 }
 
 /* === Menú desplegable grande === */
 .menu {
   position: fixed;
-  top: 100px; /* justo debajo de la barra */
+  top: 0;
   right: 0;
-  background: #ff6f00; /* 👈 verde fluor sólido */
-  width: 350px; /* ancho del menú */
-  height: calc(100% - 100px); /* ocupa hasta el final de la pantalla */
-  max-height: 0; /* cerrado */
-  overflow: hidden;
+  bottom: 0; /* 👈 asegura llegar al final */
+  background: #ff6f00;
+  width: 230px;
+  height: 100vh; /* ocupa toda la altura visible */
+  overflow-y: auto; /* 👈 permite hacer scroll dentro del menú si es necesario */
+  max-height: 0;
   transition: max-height 0.4s ease;
   z-index: 2000;
-  mix-blend-mode: normal; /* 👈 no se mezcla con el muro */
+  mix-blend-mode: normal;
 }
 
 .menu.open {
-  max-height: calc(100% - 100px); /* se abre hasta abajo */
+  max-height: 100%; /* se abre hasta la altura visible */
 }
 
 .menu ul {
@@ -95,38 +95,39 @@ body {
 
 .menu a {
   text-decoration: none;
-  color: #ffffff; /* negro para contraste con fluor */
-  font-size: 1.8rem; /* tipografía más grande */
-  font-weight: 500; /* links más llamativos */
-  transition: color 0.3s;
+  color: #ffffff;
+  font-size: 1.2rem;
+  font-weight: 500;
+  line-height: 0;
+  transition: color 0.2s;
+  transition: ease 0.1s;
 }
 
 .menu a:hover {
-  color: #222;
+  color: #ffffff;
   font-style: italic;
-  font-weight: 800;
-  font-size: 2rem;
+  font-weight: 500;
+  font-size: 1.3rem;
 }
 
 /* === Botón hamburguesa === */
 .menu-toggle {
-  position: absolute;
+  position: fixed; /* 👈 fijo para que ya no dependa de la barra */
   right: 20px;
-  top: 50%;
-  transform: translateY(-50%);
+  top: 30px;
   width: 30px;
   height: 22px;
   display: flex;
   flex-direction: column;
   justify-content: space-between;
   cursor: pointer;
-  z-index: 1001;
+  z-index: 3001; /* encima del logo */
 }
 
 .menu-toggle span {
   display: block;
   height: 4px;
-  background: #5b5b5b; /* se invierte con blend en la barra */
+  background: #5b5b5b;
   border-radius: 2px;
   transition: 0.3s;
 }
@@ -148,12 +149,12 @@ body {
   grid-template-columns: repeat(6, 1fr);
   gap: 10px;
   width: 100%;
-  height: calc(100vh + 300px); /* 👈 alto extra para scroll */
-  margin-top: 0;              /* 👈 quitamos margen */
-  padding-top: 100px;          /* 👈 empuja el contenido para dejar espacio a la barra */
+  min-height: calc(100% + 100px); /* 👈 crece 100px más allá del contenido */
+  margin-top: 0;
+  padding-top: 100px;
   overflow: hidden;
   position: relative;
-  z-index: 1000;               /* 👈 debajo de la barra */
+  z-index: 1000;
 }
 
 .columna {
@@ -180,9 +181,9 @@ body {
   left: 0;
   width: 100%;
   display: grid;
-  grid-template-columns: 1fr 1fr; /* dos columnas */
-  gap: 20px; /* separación entre módulos */
-  padding: 0 20px; /* margen lateral */
+  grid-template-columns: 1fr 1fr;
+  gap: 20px;
+  padding: 0 20px;
   z-index: 1500; /* encima del muro animado */
 }
 
@@ -194,8 +195,8 @@ body {
 
 .galeria .modulo {
   width: 100%;
-  height: 900px; /* 👈 altura fija del rectángulo */
-  background: rgba(255, 255, 255, 0.85); /* rectángulo blanco con opacidad */
+  height: 700px;
+  background: rgba(255, 255, 255, 0.85);
   border-radius: 8px;
   display: flex;
   justify-content: center;
@@ -206,7 +207,7 @@ body {
 }
 
 .galeria .modulo:hover {
-  transform: scale(1.05);
+  transform: scale(1.01);
   background: rgba(255, 255, 255, 1);
 }
 
@@ -218,7 +219,6 @@ body {
   text-align: center;
   color: #000;
 }
-
 
 /* Animación de columnas arriba/abajo */
 @keyframes scrollCol {

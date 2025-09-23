@@ -1,0 +1,86 @@
+/* =========================
+   Estilos específicos: Módulo 1
+   ========================= */
+
+body {
+  margin: 0;
+  padding: 30px;
+  font-family: "Martian Mono", monospace;
+  background-color: #fff;
+  color: #111;
+}
+
+/* ===== Intro del módulo ===== */
+.intro h1 {
+  font-size: 2rem;
+  font-weight: 700;
+  margin-bottom: 0.5rem;
+}
+
+.intro p {
+  font-size: 1rem;
+  max-width: 600px;
+  line-height: 1.5;
+  margin-bottom: 1.5rem;
+  font-weight: 500;
+}
+
+/* ===== Lista de tipografías ===== */
+.tipografias ul {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+}
+
+.tipografias li {
+  font-size: 2.8rem;
+  margin-bottom: 1.5rem;
+  line-height: 7.5rem;
+}
+
+.tipografias a {
+  text-decoration: none;
+  color: #000000;
+  transition: all 0.2s ease-in;
+  cursor: pointer;
+}
+
+.tipografias a:hover {
+  color: #000000;
+  font-weight: 700;
+  font-size: 4rem;
+}
+.carrusel {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 1rem;
+  margin-top: 2rem;
+}
+
+.carrusel img {
+  max-width: 400px;
+  height: auto;
+  border: 2px solid #000;
+  box-shadow: 2px 2px 8px rgba(0,0,0,0.2);
+}
+
+.carrusel-btn {
+  background: none;
+  border: none;
+  font-size: 2rem;
+  cursor: pointer;
+  transition: transform 0.2s ease;
+}
+
+.carrusel-btn:hover {
+  transform: scale(1.2);
+}
+
+.contador {
+  text-align: center;
+  margin-top: 0.5rem;
+  font-size: 1rem;
+  font-weight: 500;
+}
+

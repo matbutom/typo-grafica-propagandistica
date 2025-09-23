@@ -182,7 +182,6 @@ body {
   width: 100%;
   display: grid;
   grid-template-columns: 1fr 1fr;
-  gap: 20px;
   padding: 0 20px;
   z-index: 1500; /* encima del muro animado */
 }
@@ -197,7 +196,6 @@ body {
   width: 100%;
   height: 700px;
   background: rgba(255, 255, 255, 0.85);
-  border-radius: 8px;
   display: flex;
   justify-content: center;
   align-items: center;
@@ -214,10 +212,17 @@ body {
 .galeria .modulo h2 {
   font-family: "Martian Mono", monospace;
   font-weight: 700;
-  font-size: 4rem;
-  margin: 0;
-  text-align: center;
+  font-size: 4.5rem;
+  margin: 56px;
+  text-align: right;
   color: #000;
+}
+
+/* Quitar subrayado de los títulos de módulos en el index */
+.galeria .modulo h2 a {
+  text-decoration: none;
+  color: inherit;
+  font-weight: 600;
 }
 
 /* Animación de columnas arriba/abajo */

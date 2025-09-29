@@ -1,37 +1,68 @@
 <!DOCTYPE html>
 <html lang="es">
-<head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>La Vida de una Letra – Módulo 2</title>
-  <link rel="stylesheet" href="../css/modulo2.css" />
-</head>
-<body>
-  <div id="app">
-    <!-- Contenedor principal -->
-    <header>
-      <h1>La Vida de una Letra</h1>
-    </header>
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>La Vida de una Letra – Módulo 2</title>
 
-    <main>
-      <!-- Palabra dinámica -->
-      <div id="word-container">
-        <span id="word">NO</span>
-      </div>
+    <!-- Preconnect para mejorar carga de Google Fonts -->
+    <link rel="stylesheet" href="https://use.typekit.net/wqz4ckw.css" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Bodoni+Moda:wght@400;700&family=GFS+Didot&family=Montserrat:wght@300;400;600;700&display=swap"
+      rel="stylesheet"
+    />
 
-      <!-- Texto de contexto -->
-      <div id="context">
-        <p id="context-text">Haz clic en la palabra para comenzar el recorrido tipográfico.</p>
-      </div>
+    <!-- Google Fonts (ajusta la lista si necesitas) -->
+    <link
+      href="https://fonts.googleapis.com/css2?family=Bodoni+Moda&family=GFS+Didot&family=Lato&family=Libre+Franklin&family=Montserrat&family=Open+Sans&family=Oswald&family=Pacifico&family=Sansita&display=swap"
+      rel="stylesheet"
+    />
+    <!-- Adobe Fonts (tu proyecto) -->
+    <link rel="stylesheet" href="https://use.typekit.net/wqz4ckw.css" />
 
-      <!-- Botones de navegación -->
-      <div id="controls">
-        <button id="prev">◀ Anterior</button>
-        <button id="next">Siguiente ▶</button>
-      </div>
-    </main>
-  </div>
+    <link rel="stylesheet" href="../css/modulo2.css" />
+  </head>
+  <body>
+    <div id="app" class="layout">
+      <main class="stage">
+        <!-- Palabra dinámica, centrada -->
+        <div id="word-container">
+          <span id="word">NO</span>
+        </div>
 
-  <script src="../js/modulo2.js"></script>
-</body>
+        <!-- Dos columnas iguales -->
+        <section id="info-grid" aria-label="Detalles del periodo y tipografía">
+          <!-- Columna izquierda: periodo/año/contexto -->
+          <div class="info-col">
+            <h2 id="info-period">1930–1950</h2>
+            <p id="info-year" class="muted">Año: 1932</p>
+            <p id="context-text">
+              Haz clic en la palabra para comenzar el recorrido tipográfico.
+            </p>
+          </div>
+
+          <!-- Columna derecha: tipografía -->
+          <div class="info-col">
+            <h2>Tipografía</h2>
+            <p id="info-font-name" class="font-name">—</p>
+            <div id="font-preview" class="font-preview">
+              La rapidez del zorro marrón…
+            </div>
+            <p id="info-stack" class="stack-note muted"></p>
+          </div>
+        </section>
+
+        <!-- Controles -->
+        <div id="controls">
+          <button id="prev" type="button">◀ Anterior</button>
+          <button id="next" type="button">Siguiente ▶</button>
+        </div>
+      </main>
+    </div>
+
+    <!-- Dataset antes del JS del módulo -->
+    <script src="../datasets/modulo2-data.js"></script>
+    <script src="../js/modulo2.js"></script>
+  </body>
 </html>

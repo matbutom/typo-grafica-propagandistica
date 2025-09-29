@@ -1,5 +1,5 @@
 === Google Fonts ===
-<link href="https://fonts.googleapis.com/css2?family=Bodoni+Moda&family=GFS+Didot&family=Lato&family=Libre+Franklin&family=Montserrat&family=Open Sans&family=Oswald&family=Pacifico&family=Sansita&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Bodoni+Moda&family=GFS+Didot&family=Lato&family=Libre+Franklin&family=Montserrat&family=Open+Sans&family=Oswald&family=Pacifico&family=Sansita&display=swap" rel="stylesheet">
 
 === Adobe Fonts ===
 arial

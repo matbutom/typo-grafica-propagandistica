@@ -1,0 +1,26 @@
+# Requests HTTP y scraping
+requests
+beautifulsoup4
+
+# Manejo de datos
+pandas
+
+# Visualización y gráficos
+matplotlib
+
+# Opcional: procesamiento de texto
+numpy
+
+# Opcional: para guardar resultados en Excel
+openpyxl
+
+# Opcional: para manejar fechas y tiempos
+python-dateutil
+
+# Opcional: para manejar URLs
+urllib3
+
+# Otros paquetes útiles
+rapidfuzz
+tenacity
+tldextract

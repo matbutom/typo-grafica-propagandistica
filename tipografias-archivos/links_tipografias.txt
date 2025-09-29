@@ -1,0 +1,113 @@
+=== Google Fonts ===
+<link href="https://fonts.googleapis.com/css2?family=Bodoni+Moda&family=GFS+Didot&family=Lato&family=Libre+Franklin&family=Montserrat&family=Open Sans&family=Oswald&family=Pacifico&family=Sansita&display=swap" rel="stylesheet">
+
+=== Adobe Fonts ===
+arial
+atf-franklin-gothic
+bookman-jf
+courier
+futura-pt
+georgia
+museo
+ocr-a
+template-gothic
+times-new-roman
+trajan
+
+=== Fontshare ===
+
+
+=== Velvetyne ===
+
+
+=== Fontlibrary ===
+
+
+=== GitHub (bloques @font-face) ===
+
+@font-face {
+    font-family: 'Roboto';
+    src: url('https://github.com/fontlabcom/flexlab-font-ofl/raw/master/Roboto-Regular.woff2') format('woff2');
+    font-weight: 400;
+    font-style: normal;
+}
+
+
+@font-face {
+    font-family: 'Times New Roman';
+    src: url('https://github.com/scriptwide-fonts/phrygia-font/raw/master/TimesNewRoman-Regular.woff2') format('woff2');
+    font-weight: 400;
+    font-style: normal;
+}
+
+
+@font-face {
+    font-family: 'Palatino';
+    src: url('https://github.com/oxomoto/Unoverso-Libre/raw/master/Palatino-Regular.woff2') format('woff2');
+    font-weight: 400;
+    font-style: normal;
+}
+
+
+@font-face {
+    font-family: 'DIN';
+    src: url('https://github.com/speters33w/d-din-font/raw/master/DIN-Regular.woff2') format('woff2');
+    font-weight: 400;
+    font-style: normal;
+}
+
+
+@font-face {
+    font-family: 'Cooper Black';
+    src: url('https://github.com/eliheuer/preschool/raw/master/CooperBlack-Regular.woff2') format('woff2');
+    font-weight: 400;
+    font-style: normal;
+}
+
+
+=== Otros (manual) ===
+Bebas Neue → https://www.dafont.com/bebas-neue.font
+Zona Pro → https://www.dafontfree.io/zona-pro-free-font/
+Propaganda Latinotype → https://www.latinotype.com/
+Comic Sans → https://www.fontspace.com/category/comic-sans
+Verdana → https://en.wikipedia.org/wiki/Verdana
+Century Gothic → https://fontforfree.com/century-gothic-font-family/
+FF Blur → https://www.myfonts.com/collections/ff-blur-font-fontfont
+Emigre Matrix → https://www.emigre.com/Fonts/Matrix-II
+Helvetica → https://fontsarena.com/helvetica/
+Univers → https://www.deefont.com/univers-font-family/
+Zapf Chancery → https://fontsgeek.com/zapf-chancery-font
+Akzidenz Grotesk → https://fontforfree.com/akzidenz-grotesk-font-family/
+Stencil → https://www.dafont.com/theme.php?cat=114
+Trade Gothic → https://www.dafontfree.io/trade-gothic-font/
+Mistral → https://freefonts.co/fonts/mistral-regular
+Banco → https://www.ffonts.net/Banco.font.download
+Fairfield → https://en.wikipedia.org/wiki/Fairfield_(typeface)
+Egyptienne → https://www.dafont.com/fetteegyptienne.font
+Optima → https://www.cufonfonts.com/font/optima
+Helvetica → https://fontsarena.com/helvetica/
+Frutiger → https://en.wikipedia.org/wiki/Frutiger_(typeface)
+Gotham → https://www.deefont.com/gotham-font-family/
+Akzidenz Grotesk → https://fontforfree.com/akzidenz-grotesk-font-family/
+Australis → https://www.dafont.com/australis.font
+Miliciana → https://www.dafont.com/dfdmiliciana.font
+Pincoya Black → https://www.dafont.com/pincoyablack.font
+Chasquilla → https://fontmeme.com/fonts/dfd-chasquilla-font/
+Gill Sans → https://fontforfree.com/gill-sans-font-family/
+Kabel → https://www.fontspace.com/kabel-font-f178
+Broadway → https://fontsgeek.com/fonts/Broadway-Regular
+Stencil → https://www.dafont.com/theme.php?cat=114
+Brush Script → https://fontmeme.com/fonts/brush-script-font/
+Helvetica → https://fontsarena.com/helvetica/
+Univers → https://www.deefont.com/univers-font-family/
+Compacta → https://www.dafontfree.io/compacta-font/
+Kabel Heavy → https://fonts2u.com/kabel-heavy.font
+Avant Garde → https://dafontfamily.com/avant-garde-font/
+Arnold Böcklin → https://en.wikipedia.org/wiki/Arnold_Böcklin_(typeface)
+Helvetica → https://www.dafontfree.io/helvetica-font-free/
+Univers → https://www.deefont.com/univers-font-family/
+Impact → https://en.wikipedia.org/wiki/Impact_(typeface)
+ITC Franklin Gothic → https://fontsgeek.com/itc-franklin-gothic-font
+Souvenir → https://www.cufonfonts.com/font/souvenir
+Zapf Chancery → https://fontsgeek.com/zapf-chancery-font
+

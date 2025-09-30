@@ -2,23 +2,16 @@
 <html lang="es">
   <head>
     <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
     <title>La Vida de una Letra – Módulo 2</title>
 
-    <!-- Preconnect para mejorar carga de Google Fonts -->
-    <link rel="stylesheet" href="https://use.typekit.net/wqz4ckw.css" />
+    <!-- Cargas de fuentes (ajusta a tu proyecto) -->
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
     <link
-      href="https://fonts.googleapis.com/css2?family=Bodoni+Moda:wght@400;700&family=GFS+Didot&family=Montserrat:wght@300;400;600;700&display=swap"
+      href="https://fonts.googleapis.com/css2?family=Bodoni+Moda:wght@400;700&family=GFS+Didot&family=Lato&family=Libre+Franklin:wght@300;400;600;700&family=Montserrat:wght@300;400;600;700&family=Open+Sans&family=Oswald&display=swap"
       rel="stylesheet"
     />
-
-    <!-- Google Fonts (ajusta la lista si necesitas) -->
-    <link
-      href="https://fonts.googleapis.com/css2?family=Bodoni+Moda&family=GFS+Didot&family=Lato&family=Libre+Franklin&family=Montserrat&family=Open+Sans&family=Oswald&family=Pacifico&family=Sansita&display=swap"
-      rel="stylesheet"
-    />
-    <!-- Adobe Fonts (tu proyecto) -->
+    <!-- Adobe Fonts (TU kit) -->
     <link rel="stylesheet" href="https://use.typekit.net/wqz4ckw.css" />
 
     <link rel="stylesheet" href="../css/modulo2.css" />
@@ -31,7 +24,7 @@
           <span id="word">NO</span>
         </div>
 
-        <!-- Dos columnas iguales -->
+        <!-- Dos columnas -->
         <section id="info-grid" aria-label="Detalles del periodo y tipografía">
           <!-- Columna izquierda: periodo/año/contexto -->
           <div class="info-col">
@@ -45,8 +38,9 @@
           <!-- Columna derecha: tipografía -->
           <div class="info-col">
             <h2>Tipografía</h2>
-            <p id="info-font-name" class="font-name">—</p>
-            <div id="font-preview" class="font-preview">
+            <!-- Eliminado el pill de nombre para evitar redundancia -->
+            <div id="font-preview" class="font-preview" aria-live="polite">
+              <!-- El JS reemplaza el contenido por el nombre en su propia fuente -->
               La rapidez del zorro marrón…
             </div>
             <p id="info-stack" class="stack-note muted"></p>
@@ -55,13 +49,13 @@
 
         <!-- Controles -->
         <div id="controls">
-          <button id="prev" type="button">◀ Anterior</button>
-          <button id="next" type="button">Siguiente ▶</button>
+          <button id="prev" type="button" aria-label="Anterior">◀ Anterior</button>
+          <button id="next" type="button" aria-label="Siguiente">Siguiente ▶</button>
         </div>
       </main>
     </div>
 
-    <!-- Dataset antes del JS del módulo -->
+    <!-- Cargar dataset antes del módulo -->
     <script src="../datasets/modulo2-data.js"></script>
     <script src="../js/modulo2.js"></script>
   </body>

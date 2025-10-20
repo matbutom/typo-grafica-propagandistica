@@ -1,0 +1,26 @@
+# entornos virtuales
+env/
+env311/
+.venv/
+
+# caches y compilados
+__pycache__/
+*.pyc
+*.pyo
+
+# modelos y datasets
+datasets/
+python/models/
+*.pth
+*.pt
+
+# archivos grandes o temporales
+*.dylib
+*.so
+*.zip
+*.tar
+*.gz
+*.DS_Store
+
+# archivos locales
+*.log

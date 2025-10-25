@@ -1,0 +1,398 @@
+/* ================================
+   La Vida de una Letra — Módulo 2
+   Layout centrado + dos columnas
+   + modos experimentales
+   ================================ */
+
+:root {
+  --bg: #0a0b0d;
+  --fg: #f1f3f4;
+  --muted: #a8b0b6;
+  --grid: rgba(255, 255, 255, 0.06);
+  --card: rgba(255, 255, 255, 0.04);
+  --btn: #15181c;
+  --btnHover: #1e2328;
+  --shadow: 0 10px 30px rgba(0, 0, 0, 0.35);
+
+  /* columnas (modo columns) */
+  --col-gap: clamp(8px, 1.2vw, 18px);
+  --col-line: rgba(255, 255, 255, 0.12);
+
+  /* trail (modo trail) */
+  --trail-blur: 6px;
+  --trail-alpha: 0.28;
+
+  /* blocks (modo blocks) */
+  --block-bg: rgba(255, 255, 255, 0.08);
+  --block-radius: 10px;
+}
+
+* {
+  box-sizing: border-box;
+}
+html,
+body {
+  height: 100%;
+}
+html {
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+body {
+  margin: 0;
+  color: var(--fg);
+  background: radial-gradient(
+      1200px 800px at 70% -10%,
+      rgba(99, 166, 255, 0.06),
+      transparent 60%
+    ),
+    radial-gradient(
+      800px 600px at 0% 100%,
+      rgba(255, 92, 151, 0.06),
+      transparent 60%
+    ),
+    var(--bg);
+  font-family: "Libre Franklin", "Inter", system-ui, -apple-system, Segoe UI,
+    Roboto, "Helvetica Neue", Arial, "Noto Sans", "Apple Color Emoji",
+    "Segoe UI Emoji", "Segoe UI Symbol", sans-serif;
+  line-height: 1.45;
+}
+
+/* textura sutil */
+body::after {
+  content: "";
+  position: fixed;
+  inset: 0;
+  pointer-events: none;
+  background: linear-gradient(transparent 97%, rgba(255, 255, 255, 0.05) 97%) 0
+      0/100% 3px,
+    linear-gradient(90deg, rgba(255, 255, 255, 0.03) 1px, transparent 1px) 0 0/6px
+      100%;
+  mix-blend-mode: soft-light;
+  opacity: 0.35;
+}
+
+/* ====== LAYOUT CENTRADO ====== */
+.layout {
+  min-height: 100svh;
+  display: grid;
+  place-items: center;
+  padding: 24px;
+}
+.stage {
+  width: min(1120px, 94vw);
+  display: grid;
+  gap: clamp(18px, 2.8vh, 28px);
+}
+
+/* Palabra centrada */
+#word-container {
+  position: relative;
+  min-height: min(36vh, 38svh);
+  display: grid;
+  place-items: center;
+  border-radius: 20px;
+  background: linear-gradient(
+      to bottom,
+      rgba(255, 255, 255, 0.03),
+      rgba(255, 255, 255, 0.01)
+    ),
+    var(--card);
+  box-shadow: var(--shadow);
+  overflow: hidden;
+}
+#word-container::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(var(--grid) 1px, transparent 1px) 0 0 / 100% 18px,
+    linear-gradient(90deg, var(--grid) 1px, transparent 1px) 0 0 / 22px 100%;
+  opacity: 0.6;
+  pointer-events: none;
+}
+#word {
+  position: relative;
+  display: inline-block;
+  font-weight: 800;
+  letter-spacing: 0; /* <- antes .01em */
+  text-transform: uppercase;
+  line-height: 1;
+  text-shadow: 0 1px 0 rgba(255, 255, 255, 0.08),
+    0 16px 30px rgba(0, 0, 0, 0.35);
+  text-wrap: balance;
+  font-kerning: normal; /* activar kerning de la fuente */
+  font-feature-settings: "kern" 1, "liga" 1, "clig" 1;
+}
+
+/* ====== DOS COLUMNAS ====== */
+#info-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: clamp(14px, 2.4vw, 28px);
+}
+.info-col {
+  background: var(--card);
+  border: 1px solid rgba(255, 255, 255, 0.08);
+  border-radius: 16px;
+  padding: clamp(14px, 2vw, 20px);
+  box-shadow: var(--shadow);
+}
+.info-col h2 {
+  margin: 0 0 8px;
+  font-size: clamp(16px, 1.6vw, 22px);
+  font-weight: 800;
+  letter-spacing: 0.02em;
+}
+.muted {
+  color: var(--muted);
+}
+
+/* Oculta la “pill” pequeña con el nombre (evita redundancia) */
+.font-name {
+  display: none !important;
+}
+
+/* ====== Elementos alineados con los IDs del JS ====== */
+#info-font-name {
+  font-size: clamp(15px, 1.4vw, 18px);
+  margin: 4px 0 10px;
+}
+#font-preview {
+  margin-top: 6px;
+  padding: 10px 12px;
+  border: 1px dashed rgba(255, 255, 255, 0.15);
+  border-radius: 12px;
+  background: rgba(255, 255, 255, 0.02);
+  font-size: clamp(24px, 3.4vw, 52px); /* más grande: muestra bien el nombre */
+  line-height: 1.15;
+  user-select: text;
+}
+#info-stack {
+  margin-top: 8px;
+  font-size: clamp(12px, 1.05vw, 14px);
+  word-break: break-word;
+}
+#context-text {
+  color: var(--muted);
+  font-size: clamp(13px, 1.1vw, 16px);
+}
+
+/* Controles */
+#controls {
+  display: flex;
+  gap: 12px;
+  justify-content: center;
+}
+#controls button {
+  appearance: none;
+  border: 1px solid rgba(255, 255, 255, 0.12);
+  color: var(--fg);
+  background: linear-gradient(to bottom, var(--btn), #0f1216);
+  padding: 12px 16px;
+  border-radius: 12px;
+  font-weight: 600;
+  letter-spacing: 0.02em;
+  cursor: pointer;
+  box-shadow: 0 6px 18px rgba(0, 0, 0, 0.25);
+  transition: transform 0.12s ease, border-color 0.2s ease, background 0.2s ease,
+    box-shadow 0.2s ease;
+}
+#controls button:hover {
+  transform: translateY(-1px);
+  border-color: rgba(99, 166, 255, 0.45);
+  background: linear-gradient(to bottom, var(--btnHover), #13171c);
+  box-shadow: 0 10px 24px rgba(0, 0, 0, 0.35),
+    0 0 0 3px rgba(99, 166, 255, 0.12) inset;
+}
+#controls button:active {
+  transform: translateY(0);
+}
+#controls button:focus-visible {
+  outline: none;
+  box-shadow: 0 0 0 3px rgba(99, 166, 255, 0.45);
+}
+
+/* ================================
+   MODOS EXPERIMENTALES (coinciden
+   con clases que setea el JS)
+   ================================ */
+
+/* Reset de efectos */
+.fx-reset {
+  transition: none;
+  filter: none;
+  transform: none;
+  letter-spacing: normal;
+}
+
+/* --- piezas por letra (JS crea <span class="w-letter">) --- */
+.w-letter {
+  display: inline;
+  position: relative;
+  will-change: transform, filter, opacity;
+}
+
+/* ===== Mode: columns (referente “grid de columnas”)
+   Letras organizadas en columnas con líneas verticales */
+.fx-columns {
+  display: grid !important;
+  grid-auto-flow: column;
+  grid-auto-columns: minmax(0, 1fr);
+  align-items: end;
+  gap: var(--col-gap);
+  padding: clamp(10px, 1.5vw, 18px) clamp(12px, 2vw, 24px);
+  background: repeating-linear-gradient(
+    90deg,
+    transparent 0 calc(var(--col-gap) - 1px),
+    var(--col-line) calc(var(--col-gap) - 1px) var(--col-gap)
+  );
+}
+.fx-columns .w-letter {
+  /* apila visualmente como “rótulos de tablero” */
+  transform: translateY(10px);
+  opacity: 0;
+  animation: colIn 360ms cubic-bezier(0.2, 0.7, 0.1, 1) both;
+  animation-delay: calc(var(--i) * 18ms);
+}
+@keyframes colIn {
+  from {
+    transform: translateY(16px);
+    opacity: 0;
+    filter: blur(2px);
+  }
+  to {
+    transform: translateY(0);
+    opacity: 1;
+    filter: none;
+  }
+}
+
+/* ===== Mode: trail (referente “arrastre/blur de texto”) */
+.fx-trail .w-letter {
+  --t: calc(var(--i) * 10ms);
+  animation: trailIn 520ms ease both var(--t);
+}
+.fx-trail .w-letter::after {
+  content: attr(data-char);
+}
+.fx-trail .w-letter::before {
+  content: attr(data-char);
+  position: absolute;
+  inset: 0;
+  transform: translateX(0.06em);
+  filter: blur(var(--trail-blur));
+  opacity: var(--trail-alpha);
+  pointer-events: none;
+}
+@keyframes trailIn {
+  0% {
+    transform: translateX(0.25em);
+    filter: blur(2px);
+    opacity: 0;
+  }
+  60% {
+    transform: translateX(-0.04em);
+    opacity: 1;
+  }
+  100% {
+    transform: translateX(0);
+    filter: none;
+  }
+}
+
+.fx-columns, .fx-trail, .fx-blocks{
+  font-kerning: none;
+  letter-spacing: -0.01em;
+}
+
+/* ===== Mode: blocks (referente “bloques que se encienden”) */
+.fx-blocks {
+  padding: clamp(8px, 1.4vw, 16px);
+  border-radius: 14px;
+  background: linear-gradient(
+    to bottom,
+    rgba(255, 255, 255, 0.02),
+    rgba(255, 255, 255, 0.01)
+  );
+}
+.fx-blocks .w-letter {
+  padding: 0.08em 0.18em;
+  animation: blocksIn 420ms cubic-bezier(0.2, 0.7, 0.1, 1) both;
+  animation-delay: calc(var(--i) * 22ms);
+}
+.fx-blocks .w-letter::before {
+  content: "";
+  position: absolute;
+  inset: -6px -8px;
+  background: var(--block-bg);
+  border-radius: var(--block-radius);
+  transform: scale(0.94);
+  opacity: 0;
+  transition: transform 0.35s ease, opacity 0.35s ease;
+}
+.fx-blocks .w-letter:nth-child(odd)::before {
+  opacity: 0.85;
+}
+.fx-blocks .w-letter:nth-child(even)::before {
+  opacity: 0.35;
+}
+@keyframes blocksIn {
+  from {
+    transform: translateY(12px) scale(0.98);
+    opacity: 0;
+  }
+  to {
+    transform: translateY(0) scale(1);
+    opacity: 1;
+  }
+}
+
+/* ================================
+   Responsive
+   ================================ */
+@media (max-width: 800px) {
+  #info-grid {
+    grid-template-columns: 1fr;
+  }
+  #word-container {
+    min-height: 40svh;
+  }
+  #word-container::before {
+    opacity: 0.4;
+    background-size: 100% 20px, 24px 100%;
+  }
+
+  .fx-columns {
+    --col-gap: clamp(6px, 3vw, 12px);
+    padding: 12px 14px;
+  }
+}
+
+/* ================================
+   Reduce motion
+   ================================ */
+@media (prefers-reduced-motion: reduce) {
+  * {
+    animation-duration: 0.001ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.001ms !important;
+  }
+}
+
+/* (Opcional) matices por período: el JS setea data-period en <body> */
+body[data-period="1973-1980"] {
+  --grid: rgba(255, 255, 255, 0.08);
+}
+body[data-period="1980-1990"] {
+  --grid: rgba(255, 255, 255, 0.07);
+}
+body[data-period="1990-2000"] {
+  --grid: rgba(255, 255, 255, 0.06);
+}
+body[data-period="2000-2010"] {
+  --grid: rgba(255, 255, 255, 0.05);
+}
+body[data-period="2010-2025"] {
+  --grid: rgba(255, 255, 255, 0.04);
+}

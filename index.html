@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html lang="es">
+  <head>
+    <meta charset="UTF-8" />
+    <title>Tipo*gráfica Propagandística</title>
+    <link rel="icon" type="image/jpeg" href="assets/img/typ_avtar.jpg" />
+    <link rel="stylesheet" href="style.css" />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Martian+Mono:wght@100..800&display=swap"
+      rel="stylesheet"
+    />
+  </head>
+  <body>
+    <!-- Barra superior con logo y hamburguesa -->
+    <img src="assets/img/TP_logo_OR.png" alt="Logo Proyecto" class="logo" />
+    <div class="menu-toggle" id="menu-toggle">
+      <span></span>
+      <span></span>
+      <span></span>
+    </div>
+
+    <!-- Menú fuera de la barra -->
+    <nav class="menu" id="menu">
+      <ul>
+        <li><a href="#">Inicio</a></li>
+        <li><a href="#">Proyecto</a></li>
+        <li><a href="#">Galería</a></li>
+        <li><a href="#">Contacto</a></li>
+      </ul>
+    </nav>
+
+    <!-- Muro -->
+    <div id="muro" class="muro"></div>
+
+    <!-- Galería superpuesta -->
+    <div class="galeria">
+      <div class="item">
+        <div class="modulo">
+          <h2><a href="modulos/modulo1.html">➜ Explorador de Afiches</a></h2>
+        </div>  
+      </div>
+      <div class="item">
+        <div class="modulo">
+          <h2><a href="modulos/modulo2.html">Módulo 2</a></h2>
+        </div>
+      </div>
+      <div class="item">
+        <div class="modulo">
+          <h2><a href="modulos/modulo3.html">Módulo 3</a></h2>
+        </div>
+      </div>
+      <div class="item">
+        <div class="modulo">
+          <h2><a href="modulos/modulo4.html">Módulo 4</a></h2>
+        </div>
+      </div>
+    </div>
+
+    <script type="module" src="js/main.js"></script>
+    <script>
+      const toggle = document.getElementById("menu-toggle");
+      const menu = document.getElementById("menu");
+
+      toggle.addEventListener("click", () => {
+        menu.classList.toggle("open");
+        toggle.classList.toggle("open");
+      });
+    </script>
+  </body>
+</html>

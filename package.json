@@ -1,0 +1,26 @@
+{
+  "name": "typo-grafica-propagandistica",
+  "version": "1.0.0",
+  "description": "",
+  "main": "script.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/matbutom/typo-grafica-propagandistica.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "type": "commonjs",
+  "bugs": {
+    "url": "https://github.com/matbutom/typo-grafica-propagandistica/issues"
+  },
+  "homepage": "https://github.com/matbutom/typo-grafica-propagandistica#readme",
+  "dependencies": {
+    "@tweenjs/tween.js": "^25.0.0",
+    "dat.gui": "^0.7.9",
+    "three": "^0.180.0"
+  }
+}

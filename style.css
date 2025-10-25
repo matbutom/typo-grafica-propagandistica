@@ -1,0 +1,236 @@
+/* === Fuente Martian Mono (variable) === */
+.martian-mono {
+  font-family: "Martian Mono", monospace;
+  font-optical-sizing: auto; /* 👈 optimización óptica automática */
+  font-weight: 400; /* puedes variar entre 100..800 */
+  font-style: normal;
+  font-variation-settings: "wdth" 100; /* ancho estándar */
+}
+
+/* === Fuente global === */
+body,
+a,
+li,
+button,
+input,
+textarea {
+  font-family: "Martian Mono", monospace;
+  font-optical-sizing: auto; /* activa el motor variable */
+  font-weight: 100; /* rango 100..800 */
+  font-style: normal;
+  font-variation-settings: "wdth" 100; /* ancho estándar */
+}
+
+h1,
+h2,
+h3 {
+  font-weight: 800; /* títulos más pesados */
+}
+
+/* === Layout base === */
+body {
+  margin: 0;
+  padding: 0;
+  width: 100%;
+  height: 100vh;
+  overflow-y: scroll; /* 👈 permitimos scroll vertical */
+  overflow-x: hidden; /* 👈 bloqueamos scroll horizontal */
+  background: #fff; /* necesario para que el blend funcione bien */
+}
+
+/* === Logo flotante encima del muro === */
+.logo {
+  position: fixed;
+  top: 20px;
+  left: 50%;
+  transform: translateX(-50%) scale(1); /* 👈 escala base */
+  height: 80px;
+  z-index: 4000;
+  mix-blend-mode: difference; /* 👈 fundido con los afiches */
+  cursor: pointer;
+
+  /* transición suave de todo lo que cambia */
+  transition: transform 0.2s ease, mix-blend-mode 0.2s ease, filter 0.2s ease;
+}
+
+.logo:hover {
+  mix-blend-mode: normal; /* 👈 se limpia */
+  transform: translateX(-50%) scale(1.2); /* 👈 crece más suave */
+  filter: drop-shadow(0 8px 20px rgba(0, 0, 0, 1));
+}
+
+/* === Menú desplegable grande === */
+.menu {
+  position: fixed;
+  top: 0;
+  right: 0;
+  bottom: 0; /* 👈 asegura llegar al final */
+  background: #ff6f00;
+  width: 230px;
+  height: 100vh; /* ocupa toda la altura visible */
+  overflow-y: auto; /* 👈 permite hacer scroll dentro del menú si es necesario */
+  max-height: 0;
+  transition: max-height 0.4s ease;
+  z-index: 2000;
+  mix-blend-mode: normal;
+}
+
+.menu.open {
+  max-height: 100%; /* se abre hasta la altura visible */
+}
+
+.menu ul {
+  list-style: none;
+  padding: 40px 30px;
+  margin: 0;
+}
+
+.menu li {
+  margin-bottom: 30px;
+}
+
+.menu li:last-child {
+  margin-bottom: 0;
+}
+
+.menu a {
+  text-decoration: none;
+  color: #ffffff;
+  font-size: 1.2rem;
+  font-weight: 500;
+  line-height: 0;
+  transition: color 0.2s;
+  transition: ease 0.1s;
+}
+
+.menu a:hover {
+  color: #ffffff;
+  font-style: italic;
+  font-weight: 500;
+  font-size: 1.3rem;
+}
+
+/* === Botón hamburguesa === */
+.menu-toggle {
+  position: fixed; /* 👈 fijo para que ya no dependa de la barra */
+  right: 20px;
+  top: 30px;
+  width: 30px;
+  height: 22px;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  cursor: pointer;
+  z-index: 3001; /* encima del logo */
+}
+
+.menu-toggle span {
+  display: block;
+  height: 4px;
+  background: #5b5b5b;
+  border-radius: 2px;
+  transition: 0.3s;
+}
+
+/* Animación del ícono hamburguesa a "X" */
+.menu-toggle.open span:nth-child(1) {
+  transform: rotate(45deg) translate(5px, 5px);
+}
+.menu-toggle.open span:nth-child(2) {
+  opacity: 0;
+}
+.menu-toggle.open span:nth-child(3) {
+  transform: rotate(-45deg) translate(6px, -6px);
+}
+
+/* === Muro de afiches === */
+#muro {
+  display: grid;
+  grid-template-columns: repeat(6, 1fr);
+  gap: 10px;
+  width: 100%;
+  min-height: calc(100% + 100px); /* 👈 crece 100px más allá del contenido */
+  margin-top: 0;
+  padding-top: 100px;
+  overflow: hidden;
+  position: relative;
+  z-index: 1000;
+}
+
+.columna {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  animation: scrollCol 110s linear infinite;
+}
+
+.columna:nth-child(even) {
+  animation-direction: reverse; /* 👈 alterna dirección */
+}
+
+.afiche {
+  width: 100%;
+  border-radius: 4px;
+  box-shadow: 0 2px 6px rgba(0, 0, 0, 0.3);
+}
+
+/* === Galería superpuesta === */
+.galeria {
+  position: absolute;
+  top: 50%; /* empieza a la mitad de la web */
+  left: 0;
+  width: 100%;
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  padding: 0 20px;
+  z-index: 1500; /* encima del muro animado */
+}
+
+.galeria .item {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.galeria .modulo {
+  width: 100%;
+  height: 700px;
+  background: rgba(255, 255, 255, 0.85);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2);
+  transition: transform 0.3s, background 0.3s;
+  cursor: pointer;
+}
+
+.galeria .modulo:hover {
+  transform: scale(1.01);
+  background: rgba(255, 255, 255, 1);
+}
+
+.galeria .modulo h2 {
+  font-family: "Martian Mono", monospace;
+  font-weight: 700;
+  font-size: 4.5rem;
+  margin: 56px;
+  text-align: right;
+  color: #000;
+}
+
+/* Quitar subrayado de los títulos de módulos en el index */
+.galeria .modulo h2 a {
+  text-decoration: none;
+  color: inherit;
+  font-weight: 600;
+}
+
+/* Animación de columnas arriba/abajo */
+@keyframes scrollCol {
+  0% {
+    transform: translateY(0);
+  }
+  100% {
+    transform: translateY(-50%);
+  }
+}

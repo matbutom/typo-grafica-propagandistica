@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="es">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+    <title>➜ Explorador de Afiches</title>
+
+    <!-- Favicon -->
+    <link rel="icon" type="image/jpeg" href="../assets/img/typ_avtar.jpg" />
+
+    <!-- Estilos globales -->
+    <link rel="stylesheet" href="../style.css" />
+    <!-- Estilos específicos -->
+    <link rel="stylesheet" href="../css/modulo1.css" />
+  </head>
+  <body>
+    <main class="modulo modulo1">
+      <!-- Portada del módulo -->
+      <section class="intro">
+        <h1>➜ Explorador de Afiches</h1>
+        <p>
+          En este módulo podrás explorar las tipografías presentes en los
+          afiches de propaganda política chilena, recopilados a lo largo de su
+          historia.
+        </p>
+      </section>
+
+      <!-- Opciones tipográficas -->
+      <section class="tipografias">
+        <ul>
+          <li><a href="#" data-filter="sansserif">Sans Serif</a></li>
+          <li><a href="#" data-filter="display">Display</a></li>
+          <li><a href="#" data-filter="rotulos">Rótulos</a></li>
+          <li><a href="#" data-filter="serif">Serif</a></li>
+        </ul>
+      </section>
+
+      <!-- Contenedor dinámico donde aparece el carrusel -->
+      <section class="galeria-afiches" id="galeria-afiches"></section>
+    </main>
+
+    <!-- Script del módulo -->
+    <script type="module" src="../js/modulo1.js"></script>
+
+    <!-- Overlay para detalle de afiche -->
+    <div class="overlay" id="overlay">
+      <div class="overlay-content" id="overlay-content">
+        <!-- Aquí va la imagen y la info dinámica -->
+      </div>
+      <div class="overlay-close" id="overlay-close">&times;</div>
+    </div>
+  </body>
+</html>

@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="es">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>La Vida de una Letra – Módulo 2</title>
+
+    <!-- Cargas de fuentes (ajusta a tu proyecto) -->
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Bodoni+Moda:wght@400;700&family=GFS+Didot&family=Lato&family=Libre+Franklin:wght@300;400;600;700&family=Montserrat:wght@300;400;600;700&family=Open+Sans&family=Oswald&display=swap"
+      rel="stylesheet"
+    />
+    <!-- Adobe Fonts (TU kit) -->
+    <link rel="stylesheet" href="https://use.typekit.net/wqz4ckw.css" />
+
+    <link rel="stylesheet" href="../css/modulo2.css" />
+  </head>
+  <body>
+    <div id="app" class="layout">
+      <main class="stage">
+        <!-- Palabra dinámica, centrada -->
+        <div id="word-container">
+          <span id="word">NO</span>
+        </div>
+
+        <!-- Dos columnas -->
+        <section id="info-grid" aria-label="Detalles del periodo y tipografía">
+          <!-- Columna izquierda: periodo/año/contexto -->
+          <div class="info-col">
+            <h2 id="info-period">1930–1950</h2>
+            <p id="info-year" class="muted">Año: 1932</p>
+            <p id="context-text">
+              Haz clic en la palabra para comenzar el recorrido tipográfico.
+            </p>
+          </div>
+
+          <!-- Columna derecha: tipografía -->
+          <div class="info-col">
+            <h2>Tipografía</h2>
+            <!-- Eliminado el pill de nombre para evitar redundancia -->
+            <div id="font-preview" class="font-preview" aria-live="polite">
+              <!-- El JS reemplaza el contenido por el nombre en su propia fuente -->
+              La rapidez del zorro marrón…
+            </div>
+            <p id="info-stack" class="stack-note muted"></p>
+          </div>
+        </section>
+
+        <!-- Controles -->
+        <div id="controls">
+          <button id="prev" type="button" aria-label="Anterior">◀ Anterior</button>
+          <button id="next" type="button" aria-label="Siguiente">Siguiente ▶</button>
+        </div>
+      </main>
+    </div>
+
+    <!-- Cargar dataset antes del módulo -->
+    <script src="../datasets/modulo2-data.js"></script>
+    <script src="../js/modulo2.js"></script>
+  </body>
+</html>

@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8" />
+  <title>Visor de afiches — Viscoso</title>
+  <style>
+    body {
+      margin: 0;
+      background: #111;
+      color: #fff;
+      font-family: system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+    }
+    h1 {
+      font-size: 14px;
+      font-weight: 500;
+      padding: 10px 14px;
+      border-bottom: 1px solid rgba(255,255,255,0.08);
+      margin: 0;
+    }
+    #lista {
+      display: flex;
+      flex-direction: column-reverse; /* el último arriba */
+      gap: 12px;
+      padding: 12px;
+    }
+    .item {
+      background: rgba(255,255,255,0.03);
+      border: 1px solid rgba(255,255,255,0.03);
+      border-radius: 10px;
+      overflow: hidden;
+      max-width: 520px;
+      box-shadow: 0 12px 24px rgba(0,0,0,0.25);
+      animation: entrar 0.35s ease-out;
+    }
+    .item img {
+      width: 100%;
+      display: block;
+    }
+    .meta {
+      padding: 6px 10px 10px;
+      font-size: 11px;
+      opacity: 0.8;
+      word-break: break-all;
+    }
+    @keyframes entrar {
+      from { transform: translateY(12px); opacity: 0; }
+      to { transform: translateY(0); opacity: 1; }
+    }
+  </style>
+</head>
+<body>
+  <!-- <h1>🖼 Historial de afiches (en vivo)</h1> -->
+  <div id="lista"></div>
+
+  <script>
+    const lista = document.getElementById("lista");
+    const ch = new BroadcastChannel("viscoso-posters");
+
+    ch.onmessage = (ev) => {
+      const data = ev.data;
+      if (!data || data.type !== "nuevo-poster") return;
+
+      const div = document.createElement("div");
+      div.className = "item";
+
+      // imagen principal
+      const img = document.createElement("img");
+      img.src = data.poster;   // si no existe mostrará vacío
+      img.alt = "Poster";
+
+      const meta = document.createElement("div");
+      meta.className = "meta";
+      meta.textContent = data.poster + " ← " + data.recorte;
+
+      div.appendChild(img);
+      div.appendChild(meta);
+      lista.appendChild(div);
+
+      // limitar historial a 25
+      if (lista.children.length > 25) {
+        lista.removeChild(lista.firstChild);
+      }
+    };
+  </script>
+</body>
+</html>

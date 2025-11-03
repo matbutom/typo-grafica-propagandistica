@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8" />
+  <title>Archivo Viscoso — Typográfica Propagandística</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <link rel="stylesheet" href="style.css" />
+  <!-- p5 desde CDN para no pelear con rutas -->
+  <script src="https://cdn.jsdelivr.net/npm/p5@1.9.2/lib/p5.min.js"></script>
+</head>
+<body>
+  <div id="app">
+    <!-- el lienzo de p5 va encima de todo -->
+  </div>
+
+  <!-- abrimos /viscoso/visor.html en otra pestaña apenas cargue -->
+  <script>
+    // si quieres que SIEMPRE haya visor abierto
+    window.addEventListener("load", () => {
+      // abrir solo si no está ya abierto
+      if (!window.__visorAbierto) {
+        const win = window.open("visor.html", "visor-viscoso");
+        window.__visorAbierto = win;
+      }
+    });
+  </script>
+
+  <script src="script.js"></script>
+</body>
+</html>

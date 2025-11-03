@@ -1,0 +1,207 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8" />
+  <title>Visor de afiches — Viscoso</title>
+  <style>
+    :root {
+      --bg: #0f1011;
+      --panel: rgba(15,16,17,0.35);
+      --b: rgba(255,255,255,0.04);
+      --txt: #fff;
+      --muted: rgba(255,255,255,0.5);
+    }
+    body {
+      margin: 0;
+      background: var(--bg);
+      color: var(--txt);
+      font-family: system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+    }
+    #lista {
+      display: flex;
+      flex-direction: column-reverse;
+      gap: 14px;
+      padding: 14px;
+    }
+    .item {
+      display: flex;
+      gap: 14px;
+      background: var(--panel);
+      border: 1px solid var(--b);
+      border-radius: 14px;
+      overflow: hidden;
+      max-width: 840px;
+      box-shadow: 0 12px 24px rgba(0,0,0,0.25);
+      animation: entrar 0.3s ease-out;
+      backdrop-filter: blur(10px);
+    }
+    .item img {
+      width: 420px;
+      background: #000;
+      object-fit: contain;
+      aspect-ratio: 3/4;
+    }
+    .meta {
+      padding: 10px 10px 12px 0;
+      font-size: 11px;
+      display: flex;
+      flex-direction: column;
+      gap: 4px;
+      min-width: 210px;
+    }
+    .title {
+      font-size: 12px;
+      font-weight: 600;
+      margin-bottom: 4px;
+      text-transform: capitalize;
+    }
+    .row {
+      display: flex;
+      gap: 4px;
+      align-items: flex-start;
+    }
+    .label {
+      font-size: 10px;
+      text-transform: uppercase;
+      letter-spacing: .04em;
+      color: var(--muted);
+      min-width: 90px;
+    }
+    .value {
+      font-size: 11px;
+      line-height: 1.25;
+      word-break: break-all;
+    }
+    @keyframes entrar {
+      from { transform: translateY(12px); opacity: 0; }
+      to { transform: translateY(0); opacity: 1; }
+    }
+  </style>
+</head>
+<body>
+  <div id="lista"></div>
+
+  <script>
+    const lista = document.getElementById("lista");
+    const ch = new BroadcastChannel("viscoso-posters");
+
+    function normalizarTitulo(str) {
+      if (!str) return "afiche sin nombre";
+      return str
+        .replace(/_/g, " ")
+        .replace(/\.[a-zA-Z0-9]+$/, "")
+        .trim();
+    }
+
+    function extraerAnio(str = "") {
+      // primero: buscar 4 dígitos
+      const m = str.match(/(19[4-9]\d|20[0-4]\d)/);
+      if (m) return m[1];
+
+      // si no hay, heurísticas por carpeta / tema
+      str = str.toLowerCase();
+      if (str.includes("plebiscito_1988") || str.includes("plebiscito-si") || str.includes("plebiscito_no"))
+        return "1988";
+      if (str.includes("pinochet") || str.includes("dictadura") || str.includes("junta"))
+        return "c. 1977–1989";
+      if (str.includes("allende") || str.includes("unidad_popular") || str.includes("up"))
+        return "c. 1970–1973";
+      if (str.includes("elecciones_chile_2021") || str.includes("2021"))
+        return "2021";
+      if (str.includes("elecciones") && str.includes("2009"))
+        return "2009";
+      if (str.includes("evelyn_matthei"))
+        return "2013–2021";
+
+      return "s/f";
+    }
+
+    function extraerSector(str = "") {
+      const s = str.toLowerCase();
+
+      // derecha / derecha militar
+      if (
+        s.includes("pinochet") ||
+        s.includes("dictadura") ||
+        s.includes("plebiscito_si") ||
+        s.includes("evelyn_matthei") ||
+        s.includes("matthei") ||
+        s.includes("udi") ||
+        s.includes("rn") ||
+        s.includes("avanza_chile") ||
+        s.includes("militar")
+      ) {
+        return "derecha";
+      }
+
+      // izquierda
+      if (
+        s.includes("allende") ||
+        s.includes("unidad_popular") ||
+        s.includes("up") ||
+        s.includes("socialista") ||
+        s.includes("ps") ||
+        s.includes("pc") ||
+        s.includes("comunista") ||
+        s.includes("no_") || // campaña NO
+        s.includes("plebiscito_no") ||
+        s.includes("frente")
+      ) {
+        return "izquierda";
+      }
+
+      // centro / indefinido
+      return "—";
+    }
+
+    ch.onmessage = (ev) => {
+      const data = ev.data;
+      if (!data || data.type !== "nuevo-poster") return;
+
+      const posterPath = data.poster || "";
+      const recortePath = data.recorte || "";
+
+      // carpeta para título
+      const folder = posterPath.split("/")[2] || "";     // poster_dataset/<carpeta>/...
+      const fileName = posterPath.split("/").pop() || "";
+
+      const div = document.createElement("div");
+      div.className = "item";
+
+      const img = document.createElement("img");
+      img.src = posterPath;
+      img.alt = "Poster";
+
+      const meta = document.createElement("div");
+      meta.className = "meta";
+
+      const titulo = document.createElement("div");
+      titulo.className = "title";
+      titulo.textContent = normalizarTitulo(folder || fileName);
+
+      const anio = extraerAnio(posterPath);
+      const sector = extraerSector(posterPath + " " + recortePath);
+
+      const rowAnio = document.createElement("div");
+      rowAnio.className = "row";
+      rowAnio.innerHTML = `<span class="label">año aprox.</span><span class="value">${anio}</span>`;
+
+      const rowSector = document.createElement("div");
+      rowSector.className = "row";
+      rowSector.innerHTML = `<span class="label">sector</span><span class="value">${sector}</span>`;
+
+      meta.appendChild(titulo);
+      meta.appendChild(rowAnio);
+      meta.appendChild(rowSector);
+
+      div.appendChild(img);
+      div.appendChild(meta);
+      lista.appendChild(div);
+
+      if (lista.children.length > 25) {
+        lista.removeChild(lista.firstChild);
+      }
+    };
+  </script>
+</body>
+</html>

@@ -1,4 +1,4 @@
-// === VISCOSO v2.9 + VISOR ===
+// === VISCOSO v2.9 + VISOR (rutas corregidas) ===
 // Mateo Arce — Rafita Studio
 
 let letras = [];
@@ -14,9 +14,10 @@ const FLOTAR_SPEED = 0.001;
 const NOISE_SCALE = 0.0009;
 const NOISE_SPEED = 0.0008;
 const MAX_POR_LETRA = 15;
-const JSON_PATH = "recortes_letras_index.json";
+// ahora estamos dentro de /viscoso/
+const JSON_PATH = "../recortes_letras_index.json";
 
-let ultimoX = null; // posición X donde termina la última letra magnetizada
+let ultimoX = null;
 
 // canal para hablar con el visor
 const posterChannel = new BroadcastChannel("viscoso-posters");
@@ -56,7 +57,8 @@ function setup() {
     for (let i = 0; i < cantidad; i++) {
       if (letras.length >= MAX_LETRAS_VISIBLES) break;
       let ruta = random(opciones);
-      let img = loadImage(ruta, () => {
+      // 👇 importante: estamos en /viscoso/, así que subimos un nivel
+      let img = loadImage("../" + ruta, () => {
         const pos = randomCanvasPosition();
         letras.push({
           x: pos.x,
@@ -64,7 +66,7 @@ function setup() {
           tx: pos.x,
           ty: pos.y,
           img: img,
-          ruta: ruta, // ← guardamos de dónde salió
+          ruta: ruta, // guardamos ruta SIN ../ para poder parsearla
           vx: random(-FLOTAR_SPEED, FLOTAR_SPEED),
           vy: random(-FLOTAR_SPEED, FLOTAR_SPEED),
           arrastrando: false,
@@ -185,16 +187,16 @@ function mouseReleased() {
   if (!dragging) return;
   dragging.arrastrando = false;
 
-  // dentro del rectángulo
-  if (
+  const dentro =
     dragging.x > width / 2 - CENTER_W / 2 &&
     dragging.x < width / 2 + CENTER_W / 2 &&
     dragging.y > height / 2 - CENTER_H / 2 &&
-    dragging.y < height / 2 + CENTER_H / 2
-  ) {
+    dragging.y < height / 2 + CENTER_H / 2;
+
+  if (dentro) {
     dragging.magnetica = true;
 
-    // posición secuencial desde la IZQUIERDA del rectángulo
+    // posición secuencial desde la izquierda
     if (ultimoX === null) {
       ultimoX = width / 2 - CENTER_W / 2 + IMAGEN_SIZE / 2 + 20;
     } else {
@@ -211,8 +213,8 @@ function mouseReleased() {
     const posterPath = deducirPoster(dragging.ruta);
     posterChannel.postMessage({
       type: "nuevo-poster",
-      recorte: dragging.ruta,
-      poster: posterPath,
+      recorte: "../" + dragging.ruta,   // para que el visor lo pueda ver
+      poster: posterPath,               // ya viene con ../
       time: Date.now(),
     });
   } else {
@@ -230,7 +232,7 @@ function mouseClicked() {
         const posterPath = deducirPoster(letra.ruta);
         posterChannel.postMessage({
           type: "nuevo-poster",
-          recorte: letra.ruta,
+          recorte: "../" + letra.ruta,
           poster: posterPath,
           time: Date.now(),
         });
@@ -243,22 +245,22 @@ function mouseClicked() {
 // ---------- DEDUCIR POSTER ----------
 function deducirPoster(rutaRecorte) {
   // ej: recortes_letras/R/R_afiches_evelyn_matthei_afiche_afiches_evelyn_matthei_088_crop_012_0034.png
-  const nombre = rutaRecorte.split("/").pop();
+  const nombre = rutaRecorte.split("/").pop(); // R_afiches_evelyn...
 
-  // quitar el prefijo de la letra: "R_"
-  let sinLetra = nombre.replace(/^[A-Z]_/, ""); // afiches_evelyn_matthei_afiche_afiches_evelyn_matthei_088_crop...
+  // quitar prefijo de letra
+  const sinLetra = nombre.replace(/^[A-Z]_/, "");
 
   const partes = sinLetra.split("_afiche_");
   if (partes.length < 2) {
-    // fallback: muestro el recorte
-    return rutaRecorte;
+    // fallback: mostramos el recorte original
+    return "../" + rutaRecorte;
   }
 
-  const carpeta = partes[0]; // afiches_evelyn_matthei
+  const carpeta = partes[0];         // afiches_evelyn_matthei
   const base = partes[1].split("_crop")[0]; // afiches_evelyn_matthei_088
 
-  // construimos: poster_dataset/afiches_evelyn_matthei/afiche_afiches_evelyn_matthei_088.jpg
-  return `poster_dataset/${carpeta}/afiche_${base}.jpg`;
+  // ahora el visor está en /viscoso/, por eso subimos un nivel
+  return `../poster_dataset/${carpeta}/afiche_${base}.jpg`;
 }
 
 // ---------- POSICIÓN ALEATORIA ----------

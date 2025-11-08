@@ -1,0 +1,36 @@
+# requirements.txt — Tipográfica Propagandística (Python >= 3.10)
+
+# Núcleo de imagen y tipografía generativa
+numpy>=1.26
+pillow>=10.0
+opencv-python-headless>=4.8
+scikit-image>=0.22
+
+# Tipografía y shaping
+fonttools>=4.43
+uharfbuzz>=0.36.0
+freetype-py>=2.4.0
+
+# Visualización / exportación (debug, figuras, láminas)
+matplotlib>=3.8
+svgwrite>=1.4.3
+reportlab>=4.0
+
+# Interfaz rápida para demo (opcional)
+streamlit>=1.33
+
+# Utilidades de app / CLI
+pydantic>=2.6
+typer>=0.12
+rich>=13.7
+tqdm>=4.66
+
+# Geometría (opcional; contornos/paths)
+shapely>=2.0
+
+# Notas:
+# - Usamos opencv-python-headless para evitar dependencias GUI nativas.
+# - 'uharfbuzz' + 'freetype-py' permiten shaping y rasterización avanzada.
+# - Si necesitas exportar SVG->PNG/PDF con Cairo, añade:
+#   cairosvg>=2.7
+#   (requiere librerías del sistema, por eso no se incluye por defecto).

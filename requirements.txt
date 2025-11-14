@@ -28,6 +28,12 @@ tqdm>=4.66
 # Geometría (opcional; contornos/paths)
 shapely>=2.0
 
+ddgs
+requests
+pillow
+tqdm
+pytesseract    # opcional: comenta o elimina si no usarás OCR
+
 # Notas:
 # - Usamos opencv-python-headless para evitar dependencias GUI nativas.
 # - 'uharfbuzz' + 'freetype-py' permiten shaping y rasterización avanzada.

@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>LaunchControl XL — MIDI Monitor</title>
+  <style>
+    body {
+      font-family: sans-serif;
+      background: #111;
+      color: #eee;
+      padding: 20px;
+    }
+    #log {
+      white-space: pre-wrap;
+      font-size: 14px;
+      background: #222;
+      padding: 20px;
+      border-radius: 8px;
+      border: 1px solid #333;
+      max-height: 400px;
+      overflow-y: auto;
+    }
+    .device-status {
+      margin-bottom: 10px;
+      font-weight: bold;
+    }
+  </style>
+</head>
+<body>
+
+<h2>LaunchControl XL — MIDI Input Monitor</h2>
+<div class="device-status" id="status">Waiting for MIDI access...</div>
+
+<div id="log"></div>
+
+<script src="script.js"></script>
+</body>
+</html>

@@ -1,0 +1,33 @@
+/* --- GRILLA DEL ABECEDARIO MUTANTE (centrada y con letras grandes) --- */
+
+#letters-grid {
+    width: 100%;
+    height: 100%;
+    padding: 90px;
+    box-sizing: border-box;
+
+    display: grid;
+
+    /* ⭐ columnas dinámicas que se ajustan y centran filas incompletas */
+    grid-template-columns: repeat(auto-fit, minmax(130px, 1fr));
+
+    gap: 50px;
+
+    /* ⭐ centra toda la grilla horizontal y vertical */
+    justify-content: center;
+    justify-items: center;
+    align-content: center;
+}
+
+/* cada celda centrada */
+.letter-cell {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+/* canvas más grande */
+.letter-cell canvas {
+    width: 100px !important;
+    height: 100px !important;
+}

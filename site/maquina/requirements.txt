@@ -1,0 +1,14 @@
+# Dependencias principales de tu proyecto VAE
+tensorflow==2.15.0 
+tensorflowjs==4.14.0 
+
+# 🚨 CORRECCIÓN: Fijamos las versiones de JAX para evitar el ImportError de 'shape_poly'
+jax==0.4.13
+jaxlib==0.4.13
+
+# Librería de procesamiento de imágenes (PIL)
+Pillow
+# Librería para manipulación de datasets
+tensorflow-datasets
+# Librería para gráficos y visualización
+matplotlib

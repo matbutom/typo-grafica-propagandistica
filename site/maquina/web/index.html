@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Máquina de Contrapropaganda - Espacio Latente</title>
+    
+    <script src="https://cdn.jsdelivr.net/npm/@tensorflow/tfjs@3.12.0/dist/tf.min.js"></script>
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/p5.js/1.4.0/p5.js"></script>
+    <script src="https://unpkg.com/ml5@latest/dist/ml5.min.js"></script>
+    
+    <link rel="stylesheet" href="style.css"> 
+</head>
+<body>
+    <div id="controls">
+        <h1>Máquina de Contrapropaganda</h1>
+        <p>Selecciona la letra base y navega el Espacio Latente (Z-Manipulation).</p>
+        
+        <label for="letter-select">Letra Base:</label>
+        <select id="letter-select"></select>
+        
+        <button id="generate-button">Generar Ruido Z Aleatorio</button>
+
+        <hr>
+        <h3>Navegación Latente (Z-Manipulation)</h3>
+        <div id="sliders-container">
+            </div>
+
+    </div>
+    
+    <div id="canvas-container"></div>
+
+    <script src="sketch.js"></script>
+</body>
+</html>

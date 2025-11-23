@@ -26,3 +26,7 @@ python/models/
 *.log
 
 node_modules
+
+# PERMITIR site
+!site/
+

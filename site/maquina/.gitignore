@@ -1,0 +1,42 @@
+# === GENERAL ===
+.DS_Store
+Thumbs.db
+*.log
+*.tmp
+*.bak
+*.swp
+*.zip
+*.rar
+
+# === PYTHON ===
+__pycache__/
+*.pyc
+*.pyo
+*.pyd
+.ipynb_checkpoints/
+*.egg-info/
+build/
+dist/
+.cache/
+.mypy_cache/
+.pytest_cache/
+*.spec
+
+# === DATOS Y RESULTADOS ===
+data/
+*.csv
+*.xlsx
+*.xml
+*.h5
+*.npy
+*.npz
+*.pkl
+*.pt
+*.weights
+*.ckpt
+*.tflite
+*.onnx
+*.tar
+*.gz
+
+node_modules/

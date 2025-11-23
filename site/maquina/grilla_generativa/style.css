@@ -1,0 +1,52 @@
+/* Resetear el navegador para que ocupe toda la pantalla */
+html, body {
+    margin: 0;
+    padding: 0;
+    overflow: hidden; /* Evitar barras de scroll */
+    background-color: #000000; /* Fondo de página blanco */
+}
+
+#grid-container {
+    display: flex; 
+    flex-wrap: wrap; 
+    justify-content: center; /* Centra las filas */
+    
+    width: 100vw;
+    height: 100vh;
+    
+    /* 🚨 CAMBIO: Separación mínima */
+    gap: 5px; 
+    padding: 5px;
+    
+    box-sizing: border-box; 
+    overflow-y: auto; /* Scroll si no caben */
+}
+
+/* Cada celda de la grilla */
+.grid-cell {
+    /* 🚨 CAMBIO: Hacemos las celdas mucho más pequeñas */
+    flex-grow: 1;
+    flex-shrink: 1;
+    flex-basis: 80px; /* Ancho base (ajusta esto si quieres más/menos celdas) */
+
+    max-width: 150px; 
+    height: 80px; /* Alto (ajusta esto) */
+
+    overflow: hidden;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    /* background-color: #000; Fondo de la celda (el canvas lo tapará) */
+}
+
+/* Forzar el canvas (la imagen) a llenar la celda */
+.grid-cell canvas {
+    width: 100% !important;
+    height: 100% !important;
+    object-fit: contain; 
+    
+    /* ESTÉTICA CLAVE: Mantiene los píxeles nítidos al escalar */
+    image-rendering: -moz-crisp-edges;
+    image-rendering: -webkit-crisp-contrast;
+    image-rendering: pixelated;
+}

@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Intervención Generativa</title>
+
+    <script src="https://cdn.jsdelivr.net/npm/@tensorflow/tfjs@3.12.0/dist/tf.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/p5.js/1.4.0/p5.js"></script>
+    
+    <link rel="stylesheet" href="style.css">
+    
+    <style>
+        /* Contenedor flotante para el selector de obra (Esquina superior derecha) */
+        #obra-selector-container {
+            position: fixed;
+            top: 20px;
+            right: 20px;
+            z-index: 1000; /* Asegura que esté por encima del canvas */
+            background: rgba(255, 255, 255, 0.9);
+            padding: 10px;
+            border-radius: 5px;
+            box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2);
+            font-family: 'Helvetica Neue', Arial, sans-serif;
+            font-size: 14px;
+        }
+        
+        #obra-selector-container label {
+            margin-right: 10px;
+            font-weight: bold;
+            color: #333;
+        }
+        
+        #obra-select {
+            padding: 5px;
+            border-radius: 3px;
+        }
+    </style>
+</head>
+<body>
+    <div id="obra-selector-container">
+        <label for="obra-select">Seleccionar Obra:</label>
+        <select id="obra-select" onchange="window.reloadObra()"></select>
+    </div>
+
+    <script src="sketch.js"></script>
+</body>
+</html>

@@ -24,3 +24,5 @@ python/models/
 
 # archivos locales
 *.log
+
+node_modules

@@ -40,3 +40,10 @@ data/
 *.gz
 
 node_modules/
+
+typo_web/type_imgs/
+
+maquina-de-contrapropaganda/saved_models_temp/
+maquina-de-contrapropaganda/flipbook_clean/
+__pycache__/
+.DS_Store

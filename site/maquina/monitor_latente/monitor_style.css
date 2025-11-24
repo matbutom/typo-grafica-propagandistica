@@ -3,53 +3,71 @@ html, body {
     margin: 0;
     padding: 0;
     font-family: 'IBM Plex Mono', monospace;
-    background-color: #000;
+    background-color: #000; /* Fondo negro absoluto */
     color: #fff;
     overflow: hidden;
 }
 
-/* === Pantalla tipo monitor vertical === */
+/* === Pantalla vertical === */
 #main-screen {
     width: 100vw;
     height: 100vh;
-    max-width: calc(100vh * 0.5625); /* 9:16 */
+    max-width: calc(100vh * 0.5625);
     margin: 0 auto;
     padding: 20px;
     box-sizing: border-box;
-
     display: flex;
     flex-direction: column;
 }
 
-/* === Contenedor de la grilla 8x8 === */
+/* === Grilla 8x8 === */
 #canvas-container {
     flex-grow: 1;
     display: grid;
     grid-template-columns: repeat(8, 1fr);
     grid-auto-rows: 1fr;
-    gap: 6px;
+    gap: 4px; /* Separación nítida */
     padding: 10px;
 }
 
-/* === Cada celda === */
+/* === Celdas Base === */
 .cell {
-    border: 1px solid #333;
-    border-radius: 4px;
-    background: #111;
-
+    border: 2px solid #333; 
+    border-radius: 0px; /* Bordes rectos para look más técnico */
+    background: #808080; /* Gris medio por defecto */
+    
     display: flex;
     align-items: center;
     justify-content: center;
-
-    font-size: 0.9rem;
+    
+    font-size: 0.8rem;
+    font-weight: bold;
     text-align: center;
-    padding: 4px;
-    box-sizing: border-box;
-
-    transition: background-color 0.1s linear;
+    padding: 2px;
+    
+    /* Transición suave de color */
+    transition: background-color 0.1s ease, color 0.1s ease;
 }
 
-/* Valor numérico dentro de la celda */
-.cell-value {
-    color: #9fffa6; /* verde suave */
+/* === IDENTIFICACIÓN DE FILAS (ESCALA DE GRISES) === */
+
+/* Grupo 1: Knobs Top (Borde Blanco Puro) */
+.cell:nth-child(-n+16) {
+    border-color: #ffffff;
+}
+
+/* Grupo 2: Knobs Mid (Borde Gris Claro) */
+.cell:nth-child(n+17):nth-child(-n+32) {
+    border-color: #aaaaaa;
+}
+
+/* Grupo 3: Knobs Bot (Borde Gris Medio) */
+.cell:nth-child(n+33):nth-child(-n+48) {
+    border-color: #666666;
+}
+
+/* Grupo 4: Faders (Borde Gris Oscuro / Sutil) */
+.cell:nth-child(n+49) {
+    border-color: #333333;
+    border-style: double; /* Estilo diferente para los faders */
 }

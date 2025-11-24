@@ -32,5 +32,10 @@ node_modules
 
 poster_dataset/
 
-node_modules
+node_modules/
+
+maquina-de-contrapropaganda/saved_models_temp/
+maquina-de-contrapropaganda/flipbook_clean/
+__pycache__/
+.DS_Store
 

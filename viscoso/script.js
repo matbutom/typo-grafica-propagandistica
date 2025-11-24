@@ -1,5 +1,6 @@
-// === VISCOSO v2.9 + VISOR (rutas corregidas) ===
+// === VISCOSO v2.9 + VISOR (WEB VERSION) ===
 // Mateo Arce — Rafita Studio
+// Actualizado para GitHub Pages con dataset ligero
 
 let letras = [];
 let rutas = [];
@@ -14,8 +15,9 @@ const FLOTAR_SPEED = 0.001;
 const NOISE_SCALE = 0.0009;
 const NOISE_SPEED = 0.0008;
 const MAX_POR_LETRA = 15;
-// ahora estamos dentro de /viscoso/
-const JSON_PATH = "../recortes_letras_index.json";
+
+// 👇 CAMBIO 1: Apuntamos al nuevo JSON ligero generado por Python
+const JSON_PATH = "../assets/recortes_web_index.json";
 
 let ultimoX = null;
 
@@ -26,7 +28,8 @@ let viewerWindow = null;
 // ---------- CARGA DE DATOS ----------
 function preload() {
   rutas = loadJSON(JSON_PATH, (data) => {
-    if (!Array.isArray(data)) data = Object.values(data);
+    // Si el JSON es un objeto o lista, nos aseguramos de tener un array plano
+    if (!Array.isArray(data)) data = Object.values(data).flat();
     rutas = data;
   });
 }
@@ -44,9 +47,15 @@ function setup() {
 
   if (!rutas || rutas.length === 0) return;
 
+  // Agrupar rutas por letra para seleccionar variadas
   const grupos = {};
   for (let ruta of rutas) {
-    const letra = ruta.split("/")[1];
+    // ruta es tipo "assets/recortes_web/A/archivo.png"
+    // split('/') -> ["assets", "recortes_web", "A", "archivo.png"]
+    // La letra está en el índice 2
+    const partes = ruta.split("/");
+    const letra = partes.length > 2 ? partes[2] : "X";
+    
     if (!grupos[letra]) grupos[letra] = [];
     grupos[letra].push(ruta);
   }
@@ -56,8 +65,11 @@ function setup() {
     let cantidad = min(MAX_POR_LETRA, opciones.length);
     for (let i = 0; i < cantidad; i++) {
       if (letras.length >= MAX_LETRAS_VISIBLES) break;
+      
       let ruta = random(opciones);
-      // 👇 importante: estamos en /viscoso/, así que subimos un nivel
+      
+      // 👇 La ruta en el JSON es "assets/recortes_web/...", 
+      // como estamos en /viscoso/, subimos un nivel con "../"
       let img = loadImage("../" + ruta, () => {
         const pos = randomCanvasPosition();
         letras.push({
@@ -66,7 +78,7 @@ function setup() {
           tx: pos.x,
           ty: pos.y,
           img: img,
-          ruta: ruta, // guardamos ruta SIN ../ para poder parsearla
+          ruta: ruta, 
           vx: random(-FLOTAR_SPEED, FLOTAR_SPEED),
           vy: random(-FLOTAR_SPEED, FLOTAR_SPEED),
           arrastrando: false,
@@ -101,7 +113,7 @@ function draw() {
     }
   }
 
-  // rectángulo
+  // rectángulo central (zona magnética)
   fill(255, 255, 255, 180);
   noStroke();
   rectMode(CENTER);
@@ -213,8 +225,8 @@ function mouseReleased() {
     const posterPath = deducirPoster(dragging.ruta);
     posterChannel.postMessage({
       type: "nuevo-poster",
-      recorte: "../" + dragging.ruta,   // para que el visor lo pueda ver
-      poster: posterPath,               // ya viene con ../
+      recorte: "../" + dragging.ruta,   
+      poster: posterPath,
       time: Date.now(),
     });
   } else {
@@ -242,25 +254,16 @@ function mouseClicked() {
   }
 }
 
-// ---------- DEDUCIR POSTER ----------
+// ---------- DEDUCIR POSTER (VERSIÓN WEB SEGURA) ----------
 function deducirPoster(rutaRecorte) {
-  // ej: recortes_letras/R/R_afiches_evelyn_matthei_afiche_afiches_evelyn_matthei_088_crop_012_0034.png
-  const nombre = rutaRecorte.split("/").pop(); // R_afiches_evelyn...
-
-  // quitar prefijo de letra
-  const sinLetra = nombre.replace(/^[A-Z]_/, "");
-
-  const partes = sinLetra.split("_afiche_");
-  if (partes.length < 2) {
-    // fallback: mostramos el recorte original
-    return "../" + rutaRecorte;
-  }
-
-  const carpeta = partes[0];         // afiches_evelyn_matthei
-  const base = partes[1].split("_crop")[0]; // afiches_evelyn_matthei_088
-
-  // ahora el visor está en /viscoso/, por eso subimos un nivel
-  return `../poster_dataset/${carpeta}/afiche_${base}.jpg`;
+  // Como hemos eliminado la carpeta gigante de "poster_dataset" para 
+  // que GitHub Pages funcione, no podemos devolver la ruta al JPG original
+  // porque daría error 404.
+  
+  // Solución: Devolvemos la misma imagen del recorte.
+  // El visor mostrará la letra en grande en vez del afiche.
+  
+  return "../" + rutaRecorte; 
 }
 
 // ---------- POSICIÓN ALEATORIA ----------
